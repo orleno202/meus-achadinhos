@@ -1,3 +1,7 @@
 [[edge_functions]]
   function = "og-product"
   path = "/"
+
+[[edge_functions]]
+  function = "sitemap"
+  path = "/sitemap.xml"
