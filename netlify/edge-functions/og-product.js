@@ -1,7 +1,5 @@
 /* =====================================================
    Netlify Edge Function — OG tags dinâmicas por produto
-   Intercepta requisições com ?p=X e troca as meta tags
-   antes de entregar o HTML (para WhatsApp, Facebook, etc.)
 ===================================================== */
 
 const URL_PLANILHA = "https://docs.google.com/spreadsheets/d/1kz185SYCWeIEcJhWMWcPyZIhm4RvqGgwbU0DFEPw5kY/export?format=csv&gid=694267279";
@@ -43,23 +41,17 @@ export default async (request, context) => {
   const url = new URL(request.url);
   const p = url.searchParams.get("p");
 
-  // Só age quando for a página inicial com ?p=numero
-  if(url.pathname !== "/" && url.pathname !== "/index.html") return;
-  if(!p || !/^\d+$/.test(p)) return;
+  if(url.pathname !== "/" && url.pathname !== "/index.html") return context.next();
+  if(!p || !/^\d+$/.test(p)) return context.next();
 
   const index = parseInt(p, 10);
 
-  // Busca CSV da planilha
   let produto = null;
-  try{
-    const csvResp = await fetch(URL_PLANILHA, {
-      headers: { "cache-control": "no-cache" },
-      cf: { cacheTtl: 120 }
-    });
+  try {
+    const csvResp = await fetch(URL_PLANILHA);
     if(csvResp.ok){
       const csv = await csvResp.text();
       const linhas = parseCSV(csv);
-      // linha 0 = cabeçalho, então produto de índice `index` está na linha `index + 1`
       const linha = linhas[index + 1];
       if(linha && linha.length >= 3){
         produto = {
@@ -69,14 +61,12 @@ export default async (request, context) => {
         };
       }
     }
-  }catch(e){
-    // Se falhar, deixa passar o HTML original
-    return;
+  } catch(e) {
+    return context.next();
   }
 
-  if(!produto || !produto.titulo) return;
+  if(!produto || !produto.titulo) return context.next();
 
-  // Pega o HTML original
   const resp = await context.next();
   const html = await resp.text();
 
@@ -90,12 +80,11 @@ export default async (request, context) => {
     .replace(/<title>[^<]*<\/title>/, `<title>${tituloFull}</title>`)
     .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${tituloEsc}">`)
     .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${descEsc}">`)
-    .replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${imagemEsc}">`);
+    .replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${imagemEsc}">`)
+    .replace(/<meta property="og:type" content="[^"]*">/, `<meta property="og:type" content="product">`);
 
-  // Injeta tags extras antes de </head> (og:url, og:type product, twitter card)
   const extras = `
   <meta property="og:url" content="${baseUrl}">
-  <meta property="og:type" content="product">
   <meta property="og:image:secure_url" content="${imagemEsc}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${tituloEsc}">
@@ -111,5 +100,3 @@ export default async (request, context) => {
     }
   });
 };
-
-export const config = { path: "/" };
