@@ -7,10 +7,10 @@
 <script>
 (function(){
     function temParam(){
-        if(/[?&]p=\d+/.test(location.search)) return true;
+        if(/[?&]p=[\w]+/.test(location.search)) return true;
         try{
             if(window.self !== window.top && document.referrer){
-                return /[?&]p=\d+/.test(document.referrer);
+                return /[?&]p=[\w]+/.test(document.referrer);
             }
         }catch(e){}
         return false;
@@ -503,6 +503,7 @@ let resultadosBusca = [];
 let _avalListenerAtivo = null;
 let _avalListenerRef   = null;
 
+/* ✅ ATUALIZADO (hash) - função usada para gerar o identificador único */
 function hashProduto(p){
     const base = (p.link || p.titulo || "").toString();
     let h = 5381;
@@ -924,15 +925,21 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     tituloAtual = titulo;
     indexAtual  = (typeof index === "number") ? index : -1;
     modoProduto = !!modoExclusivo;
+
+    /* ✅ ATUALIZADO (hash) - usa hash em vez de índice */
     if(!modoProduto){
         try{
             if(indexAtual >= 0){
-                const params = new URLSearchParams(location.search);
-                params.set("p", indexAtual);
-                history.replaceState(null, "", "?" + params.toString());
+                const produto = produtos[indexAtual];
+                if(produto){
+                    const params = new URLSearchParams(location.search);
+                    params.set("p", hashProduto(produto));
+                    history.replaceState(null, "", "?" + params.toString());
+                }
             }
         }catch(e){}
     }
+
     const el  = document.getElementById("popupDescricao");
     const btn = document.getElementById("verMaisDescricao");
     el.classList.remove("expandida");
@@ -1131,7 +1138,12 @@ async function enviarAvaliacao(prefix){
     }
 }
 
-function gerarLinkOferta(index){ return URL_BASE + "?p=" + index; }
+/* ✅ ATUALIZADO (hash) - gerar link com hash */
+function gerarLinkOferta(index){
+    const produto = produtos[index];
+    if(!produto) return URL_BASE;
+    return URL_BASE + "?p=" + hashProduto(produto);
+}
 function linkCompartilhavel(){
     if(indexAtual >= 0) return gerarLinkOferta(indexAtual);
     return URL_BASE;
@@ -1299,9 +1311,17 @@ function iniciarListeners(){
         }catch(e){}
     }
 
-    if(p !== null && /^\d+$/.test(p)){
-        const idx = parseInt(p, 10);
-        if(produtos[idx]){
+    /* ✅ ATUALIZADO (hash) - aceita índice numérico OU hash */
+    if(p !== null && p !== ""){
+        let idx = -1;
+        if(/^\d+$/.test(p)){
+            // Modo legado: índice numérico
+            idx = parseInt(p, 10);
+        } else {
+            // Modo novo: hash
+            idx = produtos.findIndex(prod => hashProduto(prod) === p);
+        }
+        if(idx >= 0 && produtos[idx]){
             preencherMenuCategorias();
             iniciarListeners();
             carregarPaginaProduto(idx);
