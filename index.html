@@ -924,12 +924,12 @@ function construirCarrosselDinamico(){
         const slide = document.createElement("div");
         slide.className = "slide" + (i === 0 ? " active" : "");
         slide.innerHTML = `
-            <img src="${produto.imagem}" alt="${produto.titulo.replace(/"/g,'&quot;')}">
-            <div class="slide-content">
-                <h2>${produto.titulo}</h2>
-                <p><a href="javascript:void(0)" class="link-slide" data-index="${idxGlobal}">Confira esta oferta</a></p>
-            </div>
-        `;
+    <img src="${produto.imagem}" alt="${produto.titulo.replace(/"/g,'&quot;')}" fetchpriority="high">
+    <div class="slide-content">
+        <h2>${produto.titulo}</h2>
+        <p><a href="javascript:void(0)" class="link-slide" data-index="${idxGlobal}">Confira esta oferta</a></p>
+    </div>
+`;
         carrossel.appendChild(slide);
     });
     const btnPrev = document.createElement("button");
