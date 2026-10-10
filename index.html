@@ -423,7 +423,7 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     <div class="pp-wrap">
         <div class="pp-header">🌟 Meus Achadinhos — Oferta Exclusiva</div>
         <div class="pp-foto-area">
-            <a class="pp-voltar-topo" href="https://www.meusachadinhos.qd.je/">← Meus Achadinhos</a>
+            <a class="pp-voltar-topo" href="https://meusachadinhos.qd.je/">← Meus Achadinhos</a>
             <img class="pp-foto" id="ppFoto" src="" alt="">
         </div>
         <div class="pp-body">
@@ -470,10 +470,7 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     </div>
 </div>
 
-<!-- ================= FIREBASE SDK ================= -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-
+<!-- ================= FIREBASE SOB DEMANDA ================= -->
 <script>
 /* =====================================================
    ⚙️ CONFIGURAÇÃO
@@ -494,13 +491,46 @@ const firebaseConfig = {
 };
 /* ===================================================== */
 
+/* =====================================================
+   🔥 FIREBASE SOB DEMANDA
+   Carrega o SDK apenas quando o usuário abrir um produto
+   ou quando a URL contiver ?p=...
+===================================================== */
 let db = null;
-try{
-    firebase.initializeApp(firebaseConfig);
-    db = firebase.database();
-}catch(e){
-    console.warn("Firebase não inicializado.", e);
+let _firebasePromise = null;
+
+function carregarFirebase(){
+    if(_firebasePromise) return _firebasePromise;
+    _firebasePromise = new Promise(function(resolve, reject){
+        function appOk(){ return typeof firebase !== "undefined" && firebase.apps && firebase.apps.length; }
+        function init(){
+            try{
+                if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+                db = firebase.database();
+                resolve(db);
+            }catch(e){
+                console.warn("Falha ao inicializar Firebase.", e);
+                reject(e);
+            }
+        }
+        if(appOk()){ init(); return; }
+        const s1 = document.createElement("script");
+        s1.src = "https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js";
+        s1.async = true;
+        s1.onload = function(){
+            const s2 = document.createElement("script");
+            s2.src = "https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js";
+            s2.async = true;
+            s2.onload = init;
+            s2.onerror = function(e){ console.warn("Falha ao carregar firebase-database.", e); reject(e); };
+            document.head.appendChild(s2);
+        };
+        s1.onerror = function(e){ console.warn("Falha ao carregar firebase-app.", e); reject(e); };
+        document.head.appendChild(s1);
+    });
+    return _firebasePromise;
 }
+/* ===================================================== */
 
 let produtos = [];
 let categorias = [];
@@ -514,7 +544,6 @@ let resultadosBusca = [];
 let _avalListenerAtivo = null;
 let _avalListenerRef   = null;
 
-/* ✅ ATUALIZADO (hash) - função usada para gerar o identificador único */
 function hashProduto(p){
     const base = (p.link || p.titulo || "").toString();
     let h = 5381;
@@ -925,6 +954,10 @@ function abrirProdutoPopup(index){
     const produto = produtos[index];
     if(!produto) return;
     abrirPopup(produto.imagem, produto.titulo, produto.link, produto.descricao, index, false);
+    /* 🔥 Carrega Firebase sob demanda ao abrir produto */
+    carregarFirebase().then(function(){
+        ouvirAvaliacoes("popup", indexAtual);
+    }).catch(function(){ /* silencioso */ });
 }
 
 function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
@@ -937,7 +970,6 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     indexAtual  = (typeof index === "number") ? index : -1;
     modoProduto = !!modoExclusivo;
 
-    /* ✅ ATUALIZADO (hash) - usa hash em vez de índice */
     if(!modoProduto){
         try{
             if(indexAtual >= 0){
@@ -1149,7 +1181,6 @@ async function enviarAvaliacao(prefix){
     }
 }
 
-/* ✅ ATUALIZADO (hash) - gerar link com hash */
 function gerarLinkOferta(index){
     const produto = produtos[index];
     if(!produto) return URL_BASE;
@@ -1211,7 +1242,10 @@ function carregarPaginaProduto(index){
     btn.textContent = "Ver mais";
     atualizarLinkBox();
     resetAvalForm("pp");
-    ouvirAvaliacoes("pp", index);
+    /* 🔥 Carrega Firebase sob demanda na página de produto */
+    carregarFirebase().then(function(){
+        ouvirAvaliacoes("pp", index);
+    }).catch(function(){ /* silencioso */ });
     requestAnimationFrame(function(){
         requestAnimationFrame(function(){
             btn.style.display = (el.scrollHeight > el.clientHeight) ? "inline-block" : "none";
@@ -1322,14 +1356,11 @@ function iniciarListeners(){
         }catch(e){}
     }
 
-    /* ✅ ATUALIZADO (hash) - aceita índice numérico OU hash */
     if(p !== null && p !== ""){
         let idx = -1;
         if(/^\d+$/.test(p)){
-            // Modo legado: índice numérico
             idx = parseInt(p, 10);
         } else {
-            // Modo novo: hash
             idx = produtos.findIndex(prod => hashProduto(prod) === p);
         }
         if(idx >= 0 && produtos[idx]){
