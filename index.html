@@ -927,11 +927,19 @@ function executarBusca(){
     if(!termo){ limparBusca(); return; }
     termoBuscaAtual = termo;
     const t = normalizar(termo);
+    const palavras = t.split(' ').filter(function(p){ return p.length > 0; });
+    
     resultadosBusca = produtos.filter(function(p){
-        return normalizar(p.titulo).includes(t)
-            || normalizar(p.descricao).includes(t)
-            || normalizar(p.categoria).includes(t);
+        const tituloNorm = normalizar(p.titulo);
+        const descNorm   = normalizar(p.descricao);
+        const catNorm    = normalizar(p.categoria);
+        return palavras.every(function(palavra){
+            return tituloNorm.includes(palavra)
+                || descNorm.includes(palavra)
+                || catNorm.includes(palavra);
+        });
     });
+    
     paginaAtual = 1;
     mostrarResultados();
     try{
