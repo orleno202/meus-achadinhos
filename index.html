@@ -841,7 +841,9 @@ async function carregarProdutos(){
 
 function normalizar(s){
     return (s||'').toString().toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+        .replace(/\s+/g, ' ')  // ← Converte múltiplos espaços em um só
+        .trim();
 }
 function escapeHtml(s){
     return (s||"").toString()
