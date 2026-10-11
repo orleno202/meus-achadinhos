@@ -287,7 +287,6 @@ html.modo-produto #paginaProduto{display:block !important}
 .pag-next{padding:0 12px}
 .txt-seguinte{display:none}
 
-/* ====== POPUP MOBILE — SCROLL ÚNICO CONTÍNUO ====== */
 .popup{
   padding:0 !important;
   align-items:flex-start !important;
@@ -314,7 +313,6 @@ html.modo-produto #paginaProduto{display:block !important}
 .aval-section{
   margin-bottom:20px;
 }
-/* ================================================ */
 
 #paginaProduto{padding:0}
 .pp-wrap{border-radius:0;min-height:100vh;box-shadow:none}
@@ -323,7 +321,7 @@ html.modo-produto #paginaProduto{display:block !important}
 .aval-estrelas-input{font-size:28px}
 .pp-voltar-topo{top:8px;left:8px;padding:8px 14px;font-size:11px}
 }
-/* ================= RODAPÉ ================= */
+
 .rodape {
     background: #0d0d0d;
     color: #fff;
@@ -373,7 +371,6 @@ html.modo-produto #paginaProduto{display:block !important}
     margin-top: 10px;
 }
 
-/* ================= BARRA DE ÍCONES ================= */
 .barra-icones {
     background: #fff;
     padding: 10px 15px;
@@ -543,7 +540,6 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 <div class="container">
 <div class="carousel" id="carrosselBox"></div>
 
-<!-- ================= BARRA DE ÍCONES ================= -->
 <section class="barra-icones">
     <div class="barra-icones-inner">
         <div class="barra-grupo">
@@ -641,7 +637,6 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </div>
 </main>
 
-<!-- ================= RODAPÉ COM INSTAGRAM ================= -->
 <footer class="rodape">
     <div class="rodape-inner">
         <a href="https://www.instagram.com/meus_achadinhos_premium/" target="_blank" rel="noopener noreferrer" class="rodape-insta">
@@ -708,9 +703,6 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </div>
 
 <script>
-/* =====================================================
-   ⚙️ CONFIGURAÇÃO
-===================================================== */
 const URL_PLANILHA = "https://docs.google.com/spreadsheets/d/1kz185SYCWeIEcJhWMWcPyZIhm4RvqGgwbU0DFEPw5kY/export?format=csv&gid=694267279";
 const URL_BASE = "https://meusachadinhos.qd.je/";
 const ITENS_POR_PAGINA = 20;
@@ -775,7 +767,8 @@ let _avalListenerRef   = null;
 
 /* ===== CATÁLOGO PAGINADO ===== */
 let paginaCatalogo = 1;
-let _listaCatalogoPlana = [];
+let _blocosCatalogo = [];
+const CATEGORIAS_POR_PAGINA = 3; // 3 categorias por página (com carrossel cada)
 /* ============================== */
 
 function hashProduto(p){
@@ -1120,23 +1113,23 @@ function criarCarrosselCategoria(nome, itens){
     return sec;
 }
 
-/* ================= CATÁLOGO PAGINADO ================= */
+/* ================= CATÁLOGO PAGINADO POR CATEGORIA ================= */
 function montarCatalogo(filtroCat){
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
 
-    _listaCatalogoPlana = [];
+    _blocosCatalogo = [];
     const ERROS = /^#(ERROR!|N\/A|REF!|VALUE!|DIV\/0!|NAME\?|NULL!|NUM!)/i;
     const categoriasParaMostrar = filtroCat ? [filtroCat] : categorias;
 
+    // Coleta produtos por categoria
     categoriasParaMostrar.forEach(function(categoria){
         if(!categoria || ERROS.test(categoria)) return;
         const itens = produtos.filter(function(p){
             return p.categoria.split("|").map(c=>c.trim()).includes(categoria);
         });
-        itens.forEach(function(item){
-            _listaCatalogoPlana.push({ produto: item, categoria: categoria });
-        });
+        if(itens.length === 0) return;
+        _blocosCatalogo.push({ categoria: categoria, itens: itens });
     });
 
     paginaCatalogo = 1;
@@ -1147,18 +1140,15 @@ function renderizarPaginaCatalogo(){
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
 
-    const isMobile = window.innerWidth <= 650;
-    const ITENS_POR_PAGINA_CAT = isMobile ? 60 : 30;
-
-    const total = _listaCatalogoPlana.length;
-    const totalPag = Math.max(1, Math.ceil(total / ITENS_POR_PAGINA_CAT));
+    const total = _blocosCatalogo.length;
+    const totalPag = Math.max(1, Math.ceil(total / CATEGORIAS_POR_PAGINA));
 
     if(paginaCatalogo < 1) paginaCatalogo = 1;
     if(paginaCatalogo > totalPag) paginaCatalogo = totalPag;
 
-    const inicio = (paginaCatalogo - 1) * ITENS_POR_PAGINA_CAT;
-    const fim = Math.min(inicio + ITENS_POR_PAGINA_CAT, total);
-    const itensPagina = _listaCatalogoPlana.slice(inicio, fim);
+    const inicio = (paginaCatalogo - 1) * CATEGORIAS_POR_PAGINA;
+    const fim = Math.min(inicio + CATEGORIAS_POR_PAGINA, total);
+    const blocosPagina = _blocosCatalogo.slice(inicio, fim);
 
     if(total === 0){
         catalogo.innerHTML = '<p class="sem-resultados">Nenhum produto encontrado.</p>';
@@ -1166,29 +1156,8 @@ function renderizarPaginaCatalogo(){
         return;
     }
 
-    const porCategoria = {};
-    itensPagina.forEach(function(item){
-        if(!porCategoria[item.categoria]) porCategoria[item.categoria] = [];
-        porCategoria[item.categoria].push(item.produto);
-    });
-
-    Object.keys(porCategoria).forEach(function(cat){
-        const sec = document.createElement("section");
-        sec.className = "categoria";
-
-        const h = document.createElement("h2");
-        h.className = "categoria-titulo";
-        h.textContent = cat;
-        sec.appendChild(h);
-
-        const grid = document.createElement("div");
-        grid.className = "grid-produtos";
-        porCategoria[cat].forEach(function(produto){
-            grid.appendChild(criarCardGrid(produto, produtos.indexOf(produto)));
-        });
-        sec.appendChild(grid);
-
-        catalogo.appendChild(sec);
+    blocosPagina.forEach(function(bloco){
+        catalogo.appendChild(criarCarrosselCategoria(bloco.categoria, bloco.itens));
     });
 
     renderizarPaginacaoCatalogo(totalPag);
@@ -1239,7 +1208,7 @@ function irParaPaginaCatalogo(p){
         window.scrollTo({ top: y, behavior: "smooth" });
     }
 }
-/* ==================================================== */
+/* =================================================================== */
 
 function construirCarrosselDinamico(){
     const carrossel = document.getElementById("carrosselBox");
