@@ -80,7 +80,7 @@ body{font-family:'Inter','Segoe UI',Roboto,Arial,Helvetica,sans-serif;background
 .btn-limpar:hover{border-color:var(--laranja);color:var(--laranja)}
 .sem-resultados{text-align:center;padding:50px 20px;color:#888;font-size:15px;grid-column:1/-1;background:#fff;border-radius:12px}
 
-.carousel{position:relative;width:100%;height:390px;overflow:hidden;border-radius:15px;background:#fff;margin-bottom:25px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.carousel{position:relative;width:100%;height:280px;overflow:hidden;border-radius:15px;background:#fff;margin-bottom:15px;box-shadow:0 4px 20px rgba(0,0,0,.06)}
 .slide{display:none;position:relative;width:100%;height:100%}
 .slide.active{display:block;animation:fadeSlide .4s ease}
 @keyframes fadeSlide{from{opacity:.5}to{opacity:1}}
@@ -251,7 +251,7 @@ html.modo-produto #paginaProduto{display:block !important}
 #erro{display:none;text-align:center;padding:60px 20px;color:#c00;font-size:15px}
 
 @media(max-width:1000px){
-.carousel{height:350px}
+.carousel{height:250px}
 .card{flex:0 0 calc((100% - 30px) / 3)}
 .grid-produtos{grid-template-columns:repeat(3,1fr)}
 }
@@ -373,7 +373,7 @@ html.modo-produto #paginaProduto{display:block !important}
     margin-top: 10px;
 }
 
-    /* ================= BARRA DE ÍCONES ================= */
+/* ================= BARRA DE ÍCONES ================= */
 .barra-icones {
     background: #fff;
     padding: 10px 15px;
@@ -385,7 +385,7 @@ html.modo-produto #paginaProduto{display:block !important}
 .barra-icones-inner {
     display: flex;
     align-items: center;
-    justify-content: flex-start;   /* ← Alinha tudo à esquerda */
+    justify-content: space-between;
     gap: 20px;
     width: 100%;
     padding: 0 15px;
@@ -402,7 +402,7 @@ html.modo-produto #paginaProduto{display:block !important}
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-right: 8px;
-    text-align: left;      /* ← Muda de "right" para "left" */
+    text-align: left;
     white-space: nowrap;
 }
 .barra-divisor {
@@ -410,7 +410,7 @@ html.modo-produto #paginaProduto{display:block !important}
     height: 36px;
     background: #d0d0d0;
     border-radius: 1px;
-    flex-shrink: 0;      /* ← Impede o divisor de esticar */
+    flex-shrink: 0;
     margin: 0 5px;
 }
 .icone-btn {
@@ -449,10 +449,10 @@ html.modo-produto #paginaProduto{display:block !important}
     box-shadow: 0 2px 6px rgba(0,0,0,.15);
 }
 .icone-info.mercadolivre {
-    background: #FFE600;    /* ← Amarelo Mercado Livre (combina com a borda) */
+    background: #FFE600;
 }
 .icone-info.shopee {
-    background: #EE4D2D;    /* ← Laranja Shopee (mesma cor da marca) */ 
+    background: #EE4D2D;
 }
 .icone-info img {
     width: 100%;
@@ -465,14 +465,14 @@ html.modo-produto #paginaProduto{display:block !important}
     transform: scale(1.08);
     box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
- @media(max-width:650px){
+@media(max-width:650px){
     .barra-icones {
         padding: 12px 8px;
         margin-bottom: 12px;
     }
     .barra-icones-inner {
-        flex-direction: row;      /* ← Linha, não coluna */
-        flex-wrap: nowrap;        /* ← Não quebra linha */
+        flex-direction: row;
+        flex-wrap: nowrap;
         gap: 6px;
         justify-content: center;
     }
@@ -486,7 +486,7 @@ html.modo-produto #paginaProduto{display:block !important}
     }
     .barra-label {
         display: inline-block;
-        font-size: 8px;           /* ← Bem pequenininho para caber */
+        font-size: 8px;
         color: #888;
         font-weight: 700;
         text-transform: uppercase;
@@ -495,7 +495,7 @@ html.modo-produto #paginaProduto{display:block !important}
         white-space: nowrap;
     }
     .barra-divisor {
-        display: block;           /* ← MOSTRA o divisor no mobile */
+        display: block;
         width: 1px;
         height: 22px;
         background: #eaeaea;
@@ -503,11 +503,11 @@ html.modo-produto #paginaProduto{display:block !important}
     }
     .icone-btn,
     .icone-info {
-        width: 30px;              /* ← Ícones pequenos */
+        width: 30px;
         height: 30px;
     }
     .icone-info img {
-        transform: scale(1.1);    /* ← Zoom um pouco menor */
+        transform: scale(1.1);
     }
 }
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
@@ -542,10 +542,10 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 <main id="paginaNormal" style="visibility:hidden">
 <div class="container">
 <div class="carousel" id="carrosselBox"></div>
+
 <!-- ================= BARRA DE ÍCONES ================= -->
 <section class="barra-icones">
     <div class="barra-icones-inner">
-
         <div class="barra-grupo">
             <span class="barra-label">Siga:</span>
             <a href="https://www.instagram.com/meus_achadinhos_premium/" target="_blank" rel="noopener noreferrer" class="icone-btn instagram" aria-label="Instagram" title="Siga no Instagram">
@@ -573,9 +573,9 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
                 <img src="/shopee.webp" alt="Shopee" width="24" height="24">
             </span>
         </div>
-
     </div>
 </section>
+
 <h1 class="titulo-principal" id="tituloPrincipal">🌟 Meus Achadinhos — Melhores Ofertas</h1>
 <div id="erro">Não foi possível carregar as ofertas. Verifique sua conexão e recarregue a página.</div>
 
@@ -591,6 +591,7 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </div>
 
 <div id="catalogo"></div>
+<div id="paginacaoCatalogo" class="paginacao"></div>
 </div>
 
 <div class="popup" id="popup">
@@ -639,6 +640,7 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     </div>
 </div>
 </main>
+
 <!-- ================= RODAPÉ COM INSTAGRAM ================= -->
 <footer class="rodape">
     <div class="rodape-inner">
@@ -653,6 +655,7 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
         <p class="rodape-copy">© 2026 Meus Achadinhos — As melhores ofertas em um só lugar.</p>
     </div>
 </footer>
+
 <div id="paginaProduto">
     <div class="pp-wrap">
         <div class="pp-header">🌟 Meus Achadinhos — Oferta Exclusiva</div>
@@ -704,7 +707,6 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     </div>
 </div>
 
-<!-- ================= FIREBASE SOB DEMANDA ================= -->
 <script>
 /* =====================================================
    ⚙️ CONFIGURAÇÃO
@@ -723,13 +725,7 @@ const firebaseConfig = {
   messagingSenderId: "56177826778",
   appId: "1:56177826778:web:cebea89eed76dec4d07"
 };
-/* ===================================================== */
 
-/* =====================================================
-   🔥 FIREBASE SOB DEMANDA
-   Carrega o SDK apenas quando o usuário abrir um produto
-   ou quando a URL contiver ?p=...
-===================================================== */
 let db = null;
 let _firebasePromise = null;
 
@@ -764,7 +760,6 @@ function carregarFirebase(){
     });
     return _firebasePromise;
 }
-/* ===================================================== */
 
 let produtos = [];
 let categorias = [];
@@ -777,6 +772,11 @@ let paginaAtual = 1;
 let resultadosBusca = [];
 let _avalListenerAtivo = null;
 let _avalListenerRef   = null;
+
+/* ===== CATÁLOGO PAGINADO ===== */
+let paginaCatalogo = 1;
+let _listaCatalogoPlana = [];
+/* ============================== */
 
 function hashProduto(p){
     const base = (p.link || p.titulo || "").toString();
@@ -896,8 +896,6 @@ function preencherMenuCategorias(){
         dd.innerHTML = '<div class="cat-item">Nenhuma categoria</div>';
         return;
     }
-    
-    // Botão "Todas as ofertas" - CORRIGIDO PARA <button>
     const todas = document.createElement("button");
     todas.className = "cat-item";
     todas.type = "button";
@@ -905,7 +903,6 @@ function preencherMenuCategorias(){
     todas.onclick = function(){ toggleMenuCategorias(); limparBusca(); };
     dd.appendChild(todas);
 
-    // Botões das categorias - CORRIGIDO PARA <button>
     categorias.forEach(function(cat){
         const a = document.createElement("button");
         a.className = "cat-item";
@@ -953,6 +950,7 @@ function executarBusca(){
 function mostrarResultados(){
     document.getElementById("carrosselBox").style.display = "none";
     document.getElementById("catalogo").style.display = "none";
+    document.getElementById("paginacaoCatalogo").style.display = "none";
     document.getElementById("tituloPrincipal").style.display = "none";
     document.getElementById("areaResultados").style.display = "block";
     document.getElementById("termoBusca").textContent = termoBuscaAtual;
@@ -970,6 +968,7 @@ function limparBusca(){
     document.getElementById("inputBusca").value = "";
     document.getElementById("carrosselBox").style.display = "";
     document.getElementById("catalogo").style.display = "";
+    document.getElementById("paginacaoCatalogo").style.display = "";
     document.getElementById("tituloPrincipal").style.display = "";
     document.getElementById("areaResultados").style.display = "none";
     document.getElementById("gridDestaques").innerHTML = "";
@@ -1121,20 +1120,126 @@ function criarCarrosselCategoria(nome, itens){
     return sec;
 }
 
+/* ================= CATÁLOGO PAGINADO ================= */
 function montarCatalogo(filtroCat){
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
+
+    _listaCatalogoPlana = [];
     const ERROS = /^#(ERROR!|N\/A|REF!|VALUE!|DIV\/0!|NAME\?|NULL!|NUM!)/i;
     const categoriasParaMostrar = filtroCat ? [filtroCat] : categorias;
+
     categoriasParaMostrar.forEach(function(categoria){
         if(!categoria || ERROS.test(categoria)) return;
         const itens = produtos.filter(function(p){
             return p.categoria.split("|").map(c=>c.trim()).includes(categoria);
         });
-        if(itens.length === 0) return;
-        catalogo.appendChild(criarCarrosselCategoria(categoria, itens));
+        itens.forEach(function(item){
+            _listaCatalogoPlana.push({ produto: item, categoria: categoria });
+        });
     });
+
+    paginaCatalogo = 1;
+    renderizarPaginaCatalogo();
 }
+
+function renderizarPaginaCatalogo(){
+    const catalogo = document.getElementById("catalogo");
+    catalogo.innerHTML = "";
+
+    const isMobile = window.innerWidth <= 650;
+    const ITENS_POR_PAGINA_CAT = isMobile ? 60 : 30;
+
+    const total = _listaCatalogoPlana.length;
+    const totalPag = Math.max(1, Math.ceil(total / ITENS_POR_PAGINA_CAT));
+
+    if(paginaCatalogo < 1) paginaCatalogo = 1;
+    if(paginaCatalogo > totalPag) paginaCatalogo = totalPag;
+
+    const inicio = (paginaCatalogo - 1) * ITENS_POR_PAGINA_CAT;
+    const fim = Math.min(inicio + ITENS_POR_PAGINA_CAT, total);
+    const itensPagina = _listaCatalogoPlana.slice(inicio, fim);
+
+    if(total === 0){
+        catalogo.innerHTML = '<p class="sem-resultados">Nenhum produto encontrado.</p>';
+        document.getElementById("paginacaoCatalogo").innerHTML = "";
+        return;
+    }
+
+    const porCategoria = {};
+    itensPagina.forEach(function(item){
+        if(!porCategoria[item.categoria]) porCategoria[item.categoria] = [];
+        porCategoria[item.categoria].push(item.produto);
+    });
+
+    Object.keys(porCategoria).forEach(function(cat){
+        const sec = document.createElement("section");
+        sec.className = "categoria";
+
+        const h = document.createElement("h2");
+        h.className = "categoria-titulo";
+        h.textContent = cat;
+        sec.appendChild(h);
+
+        const grid = document.createElement("div");
+        grid.className = "grid-produtos";
+        porCategoria[cat].forEach(function(produto){
+            grid.appendChild(criarCardGrid(produto, produtos.indexOf(produto)));
+        });
+        sec.appendChild(grid);
+
+        catalogo.appendChild(sec);
+    });
+
+    renderizarPaginacaoCatalogo(totalPag);
+}
+
+function renderizarPaginacaoCatalogo(totalPag){
+    const pag = document.getElementById("paginacaoCatalogo");
+    pag.innerHTML = "";
+    if(totalPag <= 1) return;
+
+    const btnPrev = document.createElement("button");
+    btnPrev.className = "pag-btn";
+    btnPrev.innerHTML = "‹";
+    btnPrev.disabled = paginaCatalogo === 1;
+    btnPrev.onclick = function(){ irParaPaginaCatalogo(paginaCatalogo - 1); };
+    pag.appendChild(btnPrev);
+
+    calcularPaginas(totalPag, paginaCatalogo).forEach(function(p){
+        if(p === "..."){
+            const span = document.createElement("span");
+            span.className = "pag-ellipsis";
+            span.textContent = "...";
+            pag.appendChild(span);
+        } else {
+            const b = document.createElement("button");
+            b.className = "pag-btn" + (p === paginaCatalogo ? " ativo" : "");
+            b.textContent = p;
+            b.onclick = function(){ irParaPaginaCatalogo(p); };
+            pag.appendChild(b);
+        }
+    });
+
+    const btnNext = document.createElement("button");
+    btnNext.className = "pag-btn pag-next";
+    btnNext.innerHTML = '<span class="txt-seguinte">Seguinte </span>›';
+    btnNext.disabled = paginaCatalogo === totalPag;
+    btnNext.onclick = function(){ irParaPaginaCatalogo(paginaCatalogo + 1); };
+    pag.appendChild(btnNext);
+}
+
+function irParaPaginaCatalogo(p){
+    if(p < 1) return;
+    paginaCatalogo = p;
+    renderizarPaginaCatalogo();
+    const cat = document.getElementById("catalogo");
+    if(cat){
+        const y = cat.getBoundingClientRect().top + window.pageYOffset - 100;
+        window.scrollTo({ top: y, behavior: "smooth" });
+    }
+}
+/* ==================================================== */
 
 function construirCarrosselDinamico(){
     const carrossel = document.getElementById("carrosselBox");
@@ -1192,7 +1297,6 @@ function abrirProdutoPopup(index){
     const produto = produtos[index];
     if(!produto) return;
     abrirPopup(produto.imagem, produto.titulo, produto.link, produto.descricao, index, false);
-    /* 🔥 Carrega Firebase sob demanda ao abrir produto */
     carregarFirebase().then(function(){
         ouvirAvaliacoes("popup", indexAtual);
     }).catch(function(){ /* silencioso */ });
@@ -1480,7 +1584,6 @@ function carregarPaginaProduto(index){
     btn.textContent = "Ver mais";
     atualizarLinkBox();
     resetAvalForm("pp");
-    /* 🔥 Carrega Firebase sob demanda na página de produto */
     carregarFirebase().then(function(){
         ouvirAvaliacoes("pp", index);
     }).catch(function(){ /* silencioso */ });
