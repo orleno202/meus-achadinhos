@@ -323,11 +323,11 @@ html.modo-produto #paginaProduto{display:block !important}
 .aval-estrelas-input{font-size:28px}
 .pp-voltar-topo{top:8px;left:8px;padding:8px 14px;font-size:11px}
 }
-    /* ================= RODAPÉ ================= */
+/* ================= RODAPÉ ================= */
 .rodape {
     background: #0d0d0d;
     color: #fff;
-    padding: 30px 15px 20px;
+    padding: 35px 15px 25px;
     margin-top: 40px;
     text-align: center;
     border-top: 4px solid var(--laranja);
@@ -339,25 +339,34 @@ html.modo-produto #paginaProduto{display:block !important}
 .rodape-insta {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     background: #ff6b00;
     color: #fff;
     text-decoration: none;
-    padding: 14px 24px;
+    padding: 16px 32px;
     border-radius: 50px;
-    font-size: 15px;
-    font-weight: 700;
-    transition: background .2s, transform .2s, box-shadow .2s;
-    box-shadow: 0 4px 14px rgba(255,107,0,.35);
-    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    border: 2px solid #e85e00;
+    transition: background .2s, transform .2s, box-shadow .2s, border-color .2s;
+    box-shadow: 0 6px 0 #c44f00, 0 8px 16px rgba(255,107,0,.35);
+    margin-bottom: 18px;
 }
 .rodape-insta:hover {
     background: #e85e00;
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 22px rgba(255,107,0,.5);
+    transform: translateY(2px);
+    border-color: #d45500;
+    box-shadow: 0 4px 0 #c44f00, 0 6px 14px rgba(255,107,0,.5);
+}
+.rodape-insta:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #c44f00, 0 4px 10px rgba(255,107,0,.5);
 }
 .rodape-insta svg {
     flex-shrink: 0;
+    width: 26px;
+    height: 26px;
 }
 .rodape-insta strong {
     font-weight: 900;
