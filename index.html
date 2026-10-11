@@ -385,8 +385,8 @@ html.modo-produto #paginaProduto{display:block !important}
 .barra-icones-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;   /* ← Empurra os grupos para as bordas */
-    gap: 0;
+    justify-content: flex-start;   /* ← Alinha tudo à esquerda */
+    gap: 20px;
     width: 100%;
     padding: 0 15px;
 }
@@ -409,8 +409,11 @@ html.modo-produto #paginaProduto{display:block !important}
     width: 2px;
     height: 36px;
     background: #d0d0d0;
-    margin: 0;
+    margin: 0 20px;
     border-radius: 1px;
+    flex: 1 1 auto;                /* ← FAZ O DIVISOR CRESCER */
+    max-width: 300px;              /* ← Limita o crescimento */
+}
 }
 .icone-btn {
     display: inline-flex;
