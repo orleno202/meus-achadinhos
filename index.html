@@ -462,40 +462,49 @@ html.modo-produto #paginaProduto{display:block !important}
     transform: scale(1.08);
     box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
-  @media(max-width:650px){
+ @media(max-width:650px){
     .barra-icones {
         padding: 12px 8px;
         margin-bottom: 12px;
     }
     .barra-icones-inner {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;      /* ← Linha, não coluna */
+        flex-wrap: nowrap;        /* ← Não quebra linha */
+        gap: 6px;
+        justify-content: center;
     }
     .barra-grupo {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        width: 100%;
+        gap: 5px;
+        flex: 0 1 auto;
     }
     .barra-label {
-        display: inline-block;      /* ← AGORA MOSTRA no celular */
-        font-size: 10px;
+        display: inline-block;
+        font-size: 8px;           /* ← Bem pequenininho para caber */
         color: #888;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-right: 4px;
+        letter-spacing: 0.2px;
+        margin-right: 3px;
         white-space: nowrap;
     }
     .barra-divisor {
-        display: none;              /* ← Esconde o divisor (agora é coluna) */
+        display: block;           /* ← MOSTRA o divisor no mobile */
+        width: 1px;
+        height: 22px;
+        background: #eaeaea;
+        margin: 0 2px;
     }
     .icone-btn,
     .icone-info {
-        width: 34px;
-        height: 34px;
+        width: 30px;              /* ← Ícones pequenos */
+        height: 30px;
+    }
+    .icone-info img {
+        transform: scale(1.1);    /* ← Zoom um pouco menor */
     }
 }
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
