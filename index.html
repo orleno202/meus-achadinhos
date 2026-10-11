@@ -323,6 +323,49 @@ html.modo-produto #paginaProduto{display:block !important}
 .aval-estrelas-input{font-size:28px}
 .pp-voltar-topo{top:8px;left:8px;padding:8px 14px;font-size:11px}
 }
+    /* ================= RODAPÉ ================= */
+.rodape {
+    background: #0d0d0d;
+    color: #fff;
+    padding: 30px 15px 20px;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 4px solid var(--laranja);
+}
+.rodape-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.rodape-insta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #ff6b00, #ff3d00);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 14px rgba(255,107,0,.35);
+    margin-bottom: 15px;
+}
+.rodape-insta:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(255,107,0,.5);
+}
+.rodape-insta svg {
+    flex-shrink: 0;
+}
+.rodape-insta strong {
+    font-weight: 900;
+}
+.rodape-copy {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+}
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </style>
 </head>
@@ -418,7 +461,20 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     </div>
 </div>
 </main>
-
+<!-- ================= RODAPÉ COM INSTAGRAM ================= -->
+<footer class="rodape">
+    <div class="rodape-inner">
+        <a href="https://www.instagram.com/meus_achadinhos_premium/" target="_blank" rel="noopener noreferrer" class="rodape-insta">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <span>Siga o <strong>@meus_achadinhos_premium</strong> no Instagram</span>
+        </a>
+        <p class="rodape-copy">© 2026 Meus Achadinhos — As melhores ofertas em um só lugar.</p>
+    </div>
+</footer>
 <div id="paginaProduto">
     <div class="pp-wrap">
         <div class="pp-header">🌟 Meus Achadinhos — Oferta Exclusiva</div>
