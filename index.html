@@ -385,12 +385,10 @@ html.modo-produto #paginaProduto{display:block !important}
 .barra-icones-inner {
     display: flex;
     align-items: center;
-    justify-content: center;      /* ← Mantém centralizado */
-    gap: 0;                       /* ← Remove o gap entre grupos */
-    flex-wrap: wrap;
+    justify-content: space-between;   /* ← Empurra os grupos para as bordas */
+    gap: 0;
     width: 100%;
-    max-width: 700px;             /* ← Largura controlada */
-    margin: 0 auto;
+    padding: 0 15px;
 }
 .barra-grupo {
     display: flex;
@@ -411,7 +409,7 @@ html.modo-produto #paginaProduto{display:block !important}
     width: 2px;
     height: 36px;
     background: #d0d0d0;
-    margin: 0 18px;
+    margin: 0;
     border-radius: 1px;
 }
 .icone-btn {
