@@ -343,30 +343,21 @@ html.modo-produto #paginaProduto{display:block !important}
     background: #ff6b00;
     color: #fff;
     text-decoration: none;
-    padding: 15px 28px;
+    padding: 16px 30px;
     border-radius: 50px;
-    font-family: Arial, Helvetica, sans-serif;  /* ← Fonte limpa e universal */
-    font-size: 15px;
-    font-weight: bold;                            /* ← Bold padrão, não 800 */
-    line-height: 1.2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1;
     border: none;
-    transition: background .2s;
-    box-shadow: 0 4px 0 #c44f00;
+    transition: background .15s;
+    box-shadow: none;
     margin-bottom: 15px;
-    -webkit-font-smoothing: none;                 /* ← DESLIGA o anti-aliasing */
-    -moz-osx-font-smoothing: auto;
-    text-rendering: geometricPrecision;           /* ← Força precisão geométrica */
-    -webkit-text-stroke: 0.3px #ff6b00;           /* ← Deixa as letras mais grossas SEM borrar */
-    transform: none;                              /* ← NADA de transform no estado normal */
-    will-change: auto;
+    -webkit-font-smoothing: none;
+    text-rendering: geometricPrecision;
 }
 .rodape-insta:hover {
     background: #e85e00;
-    -webkit-text-stroke: 0.3px #e85e00;
-}
-.rodape-insta:active {
-    box-shadow: 0 1px 0 #c44f00;
-    transform: translateY(3px);
 }
 .rodape-insta svg {
     flex-shrink: 0;
@@ -377,8 +368,8 @@ html.modo-produto #paginaProduto{display:block !important}
     font-weight: bold;
 }
 .rodape-copy {
-    font-size: 12px;
-    color: #888;
+    font-size: 13px;
+    color: #999;
     margin-top: 10px;
 }
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
