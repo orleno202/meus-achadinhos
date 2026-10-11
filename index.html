@@ -436,17 +436,24 @@ html.modo-produto #paginaProduto{display:block !important}
     width: 36px;
     height: 36px;
     border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #eaeaea;
     cursor: help;
     user-select: none;
     transition: transform .2s;
 }
+.icone-info img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+}
 .icone-info.mercadolivre {
-    background: #FFE600;
-    color: #333;
+    background: #fff;
 }
 .icone-info.shopee {
-    background: #EE4D2D;
-    color: #fff;
+    background: #fff;
 }
 .icone-info:hover {
     transform: scale(1.08);
@@ -503,7 +510,7 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 <main id="paginaNormal" style="visibility:hidden">
 <div class="container">
 <div class="carousel" id="carrosselBox"></div>
-    <!-- ================= BARRA DE ÍCONES ================= -->
+<!-- ================= BARRA DE ÍCONES ================= -->
 <section class="barra-icones">
     <div class="barra-icones-inner">
 
@@ -528,14 +535,10 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
         <div class="barra-grupo">
             <span class="barra-label">Ofertas de:</span>
             <span class="icone-info mercadolivre" aria-label="Mercado Livre" title="Produtos do Mercado Livre">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
+                <img src="/mercadolivre.webp" alt="Mercado Livre" width="24" height="24">
             </span>
             <span class="icone-info shopee" aria-label="Shopee" title="Produtos da Shopee">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm0 10c-2.76 0-5-2.24-5-5h2c0 1.66 1.34 3 3 3s3-1.34 3-3h2c0 2.76-2.24 5-5 5z"/>
-                </svg>
+                <img src="/shopee.webp" alt="Shopee" width="24" height="24">
             </span>
         </div>
 
