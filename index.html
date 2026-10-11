@@ -573,16 +573,16 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </section>
 
 <h1 class="titulo-principal" id="tituloPrincipal">🌟 Meus Achadinhos — Melhores Ofertas</h1>
-<div id="erro">Não foi possível carregar as ofertas. Verifique sua conexão e recarregue a página.</div>
+<div id="erro" style="display:none"></div>
 
 <div id="areaResultados" style="display:none">
   <div class="resultado-header">
-    <h2 class="titulo-secao">🔎 Destaques para "<span id="termoBusca"></span>" <span id="contResultados" style="font-size:14px;color:#888;font-weight:normal"></span></h2>
+    <h2 class="titulo-secao" style="display:none">🔎 Destaques para "<span id="termoBusca"></span>" <span id="contResultados" style="font-size:14px;color:#888;font-weight:normal"></span></h2>
     <button class="btn-limpar" onclick="limparBusca()">← Ver todas as ofertas</button>
   </div>
   <div id="gridDestaques" class="grid-produtos"></div>
   <div id="paginacao" class="paginacao"></div>
-  <h2 class="titulo-secao" id="tituloRelacionados">✨ Você também pode gostar</h2>
+  <h2 class="titulo-secao" id="tituloRelacionados" style="display:none">✨ Você também pode gostar</h2>
   <div id="carrosseisRelacionados"></div>
 </div>
 
@@ -1658,7 +1658,9 @@ function iniciarListeners(){
     }catch(e){
         console.error(e);
         document.getElementById("loading").style.display = "none";
-        document.getElementById("erro").style.display = "block";
+        const elErro = document.getElementById("erro");
+        elErro.textContent = "Não foi possível carregar as ofertas. Verifique sua conexão e recarregue a página.";
+        elErro.style.display = "block";
         return;
     }
     document.getElementById("loading").style.display = "none";
