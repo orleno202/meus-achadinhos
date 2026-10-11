@@ -340,25 +340,19 @@ html.modo-produto #paginaProduto{display:block !important}
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: #ff6b00; /* Fallback para navegadores antigos */
-    background: linear-gradient(135deg, #ff6b00, #ff3d00);
-    background-size: 200% 200%;   /* ← Aumenta a área do gradiente */
+    background: #ff6b00;        /* ← Cor sólida em vez de gradiente */
     color: #fff;
     text-decoration: none;
     padding: 14px 24px;
     border-radius: 50px;
     font-size: 15px;
     font-weight: 700;
-    transition: transform .2s, box-shadow .2s, background-position .3s;
+    transition: transform .2s, box-shadow .2s;
     box-shadow: 0 4px 14px rgba(255,107,0,.35);
     margin-bottom: 15px;
-    will-change: background-position; /* ← Dica para o navegador renderizar melhor */
-    -webkit-backface-visibility: hidden; /* ← Corrige borrão em alguns PCs */
-    backface-visibility: hidden;
-    transform: translateZ(0);         /* ← Força aceleração por GPU */
 }
 .rodape-insta:hover {
-    background-position: 100% 100%;    /* ← Anima o gradiente no hover */
+    background: #e85e00;        /* ← Cor mais escura no hover */
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 8px 22px rgba(255,107,0,.5);
 }
