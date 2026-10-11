@@ -385,9 +385,10 @@ html.modo-produto #paginaProduto{display:block !important}
 .barra-icones-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;   /* ← Muda de center para space-between */
     gap: 20px;
     flex-wrap: wrap;
+    padding: 0 20px;                  /* ← Espaço interno nas laterais */
 }
 .barra-grupo {
     display: flex;
@@ -401,8 +402,8 @@ html.modo-produto #paginaProduto{display:block !important}
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-right: 10px;
-    min-width: 110px;
-    text-align: right;
+    min-width: auto;      /* ← Remove o min-width fixo */
+    text-align: left;     /* ← Alinha o texto à ESQUERDA */
     white-space: nowrap;
 }
 .barra-divisor {
