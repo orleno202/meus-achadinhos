@@ -385,10 +385,12 @@ html.modo-produto #paginaProduto{display:block !important}
 .barra-icones-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;   /* ← Muda de center para space-between */
-    gap: 20px;
+    justify-content: center;      /* ← Mantém centralizado */
+    gap: 0;                       /* ← Remove o gap entre grupos */
     flex-wrap: wrap;
-    padding: 0 20px;                  /* ← Espaço interno nas laterais */
+    width: 100%;
+    max-width: 700px;             /* ← Largura controlada */
+    margin: 0 auto;
 }
 .barra-grupo {
     display: flex;
@@ -401,9 +403,8 @@ html.modo-produto #paginaProduto{display:block !important}
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-right: 10px;
-    min-width: auto;      /* ← Remove o min-width fixo */
-    text-align: left;     /* ← Alinha o texto à ESQUERDA */
+    margin-right: 8px;
+    text-align: left;      /* ← Muda de "right" para "left" */
     white-space: nowrap;
 }
 .barra-divisor {
