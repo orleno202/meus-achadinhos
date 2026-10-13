@@ -6,6 +6,10 @@
   function = "sitemap"
   path = "/sitemap.xml"
 
+  [[edge_functions]]
+  function = "divulgacao"
+  path = "/divulgacao.json"
+
 # =====================================================
 # CONFIGURAÇÃO DE CACHE - MEUS ACHADINHOS
 # =====================================================
