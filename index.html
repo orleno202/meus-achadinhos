@@ -1077,39 +1077,39 @@ function renderizarPaginacao(totalPag){
 }
 function calcularPaginas(total, atual){
     const paginas = [];
-    const MAX_VISIVEIS = 5; // máximo de botões (incluindo 1, última e reticências)
+    const JANELA = 4; // quantos números aparecem em sequência
 
     // Se cabe tudo, mostra tudo
-    if(total <= MAX_VISIVEIS){
+    if(total <= JANELA + 1){ // +1 para caber a última sem "..."
         for(let i = 1; i <= total; i++) paginas.push(i);
         return paginas;
     }
 
-    // Sempre mostra a primeira
-    paginas.push(1);
-
-    // Quantas páginas do meio caberão (descontando 1ª, última e 2 reticências = 4)
-    const vagas = MAX_VISIVEIS - 4; // = 6
-
-    let inicio = Math.max(2, atual - Math.floor(vagas / 2));
-    let fim    = Math.min(total - 1, inicio + vagas - 1);
+    // Define a janela deslizante
+    let inicio = atual;
+    let fim    = atual + JANELA - 1;
 
     // Ajusta se estiver perto do fim
-    if(fim === total - 1){
-        inicio = Math.max(2, fim - vagas + 1);
+    if(fim > total - 1){
+        fim    = total - 1;
+        inicio = Math.max(1, fim - JANELA + 1);
+    }
+    if(inicio < 1){
+        inicio = 1;
+        fim    = JANELA;
     }
 
-    // Reticências no início?
-    if(inicio > 2) paginas.push("...");
+    // Adiciona reticências antes, se necessário
+    if(inicio > 1) paginas.push("...");
 
-    // Páginas do meio
+    // Números da janela
     for(let i = inicio; i <= fim; i++) paginas.push(i);
 
-    // Reticências no fim?
-    if(fim < total - 1) paginas.push("...");
+    // Adiciona reticências depois, se necessário
+    if(fim < total) paginas.push("...");
 
-    // Sempre mostra a última
-    paginas.push(total);
+    // Última página sempre visível (se não estiver na janela)
+    if(fim < total) paginas.push(total);
 
     return paginas;
 }
