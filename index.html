@@ -1077,17 +1077,40 @@ function renderizarPaginacao(totalPag){
 }
 function calcularPaginas(total, atual){
     const paginas = [];
-    if(total <= 5){
+    const MAX_VISIVEIS = 10; // máximo de botões (incluindo 1, última e reticências)
+
+    // Se cabe tudo, mostra tudo
+    if(total <= MAX_VISIVEIS){
         for(let i = 1; i <= total; i++) paginas.push(i);
         return paginas;
     }
+
+    // Sempre mostra a primeira
     paginas.push(1);
-    let inicio = Math.max(2, atual - 2);
-    let fim = Math.min(total - 1, atual + 2);
+
+    // Quantas páginas do meio caberão (descontando 1ª, última e 2 reticências = 4)
+    const vagas = MAX_VISIVEIS - 4; // = 6
+
+    let inicio = Math.max(2, atual - Math.floor(vagas / 2));
+    let fim    = Math.min(total - 1, inicio + vagas - 1);
+
+    // Ajusta se estiver perto do fim
+    if(fim === total - 1){
+        inicio = Math.max(2, fim - vagas + 1);
+    }
+
+    // Reticências no início?
     if(inicio > 2) paginas.push("...");
+
+    // Páginas do meio
     for(let i = inicio; i <= fim; i++) paginas.push(i);
+
+    // Reticências no fim?
     if(fim < total - 1) paginas.push("...");
+
+    // Sempre mostra a última
     paginas.push(total);
+
     return paginas;
 }
 function irParaPagina(p){
