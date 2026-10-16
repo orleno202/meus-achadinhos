@@ -1077,7 +1077,7 @@ function renderizarPaginacao(totalPag){
 }
 function calcularPaginas(total, atual){
     const paginas = [];
-    if(total <= 10){
+    if(total <= 5){
         for(let i = 1; i <= total; i++) paginas.push(i);
         return paginas;
     }
