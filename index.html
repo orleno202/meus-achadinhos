@@ -1077,7 +1077,7 @@ function renderizarPaginacao(totalPag){
 }
 function calcularPaginas(total, atual){
     const paginas = [];
-    const MAX_VISIVEIS = 10; // máximo de botões (incluindo 1, última e reticências)
+    const MAX_VISIVEIS = 5; // máximo de botões (incluindo 1, última e reticências)
 
     // Se cabe tudo, mostra tudo
     if(total <= MAX_VISIVEIS){
