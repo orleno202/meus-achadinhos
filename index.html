@@ -80,6 +80,8 @@
   --preto:#0d0d0d;
   --cinza:#666;
   --borda:#eaeaea;
+  --ml-amarelo:#FFE600;
+  --ml-amarelo-esc:#FFD400;
 }
 body{font-family:'Inter','Segoe UI',Roboto,Arial,Helvetica,sans-serif;background:#f5f5f7;color:#222;-webkit-font-smoothing:antialiased}
 .container{width:100%;max-width:1400px;margin:auto;padding:10px}
@@ -286,6 +288,144 @@ html.modo-produto #paginaProduto{display:block !important}
 #loading p{color:#666;font-size:15px;font-weight:600}
 #erro{display:none;text-align:center;padding:60px 20px;color:#c00;font-size:15px}
 
+/* ===== TARJA MERCADO LIVRE ===== */
+.tag-ml{
+    position:absolute;
+    top:8px;
+    left:8px;
+    background:#FFE600;
+    color:#111;
+    font-size:10px;
+    font-weight:900;
+    padding:4px 10px 4px 4px;
+    border-radius:24px;
+    letter-spacing:.4px;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    box-shadow:0 3px 10px rgba(0,0,0,.22);
+    z-index:6;
+    white-space:nowrap;
+    pointer-events:none;
+    line-height:1;
+    font-family:'Inter','Segoe UI',Arial,sans-serif;
+    border:2px solid #fff;
+}
+.tag-ml img{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:#fff;
+    padding:1px;
+    object-fit:contain;
+    display:block;
+    flex:0 0 auto;
+}
+.tag-ml span{
+    display:inline-block;
+    padding-right:2px;
+}
+
+/* Popup — tarja maior */
+.popup-foto-area .tag-ml{
+    top:10px;
+    left:10px;
+    font-size:12px;
+    padding:6px 14px 6px 6px;
+}
+.popup-foto-area .tag-ml img{
+    width:24px;
+    height:24px;
+}
+
+/* Página produto (pp) */
+.pp-foto-area .tag-ml{
+    top:60px;
+    left:10px;
+    font-size:12px;
+    padding:6px 14px 6px 6px;
+}
+.pp-foto-area .tag-ml img{
+    width:24px;
+    height:24px;
+}
+
+/* Botão Mercado Livre (usado no POPUP e PP) */
+.btn-ml{
+    background:linear-gradient(135deg,#FFE600,#FFD400) !important;
+    color:#111 !important;
+    font-weight:900 !important;
+    font-size:14px !important;
+    padding:14px 10px !important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:block;
+    text-align:center;
+    border-radius:10px;
+    line-height:1.2;
+    box-shadow:0 4px 14px rgba(255,214,0,.35);
+}
+.btn-ml:hover{
+    background:linear-gradient(135deg,#FFD400,#FFC400) !important;
+    transform:translateY(-2px);
+}
+
+/* Aviso abaixo do botão ML */
+.aviso-ml{
+    font-size:11px;
+    color:#888;
+    text-align:center;
+    margin-top:8px;
+    margin-bottom:12px;
+    line-height:1.35;
+    font-weight:600;
+}
+
+/* ===== AVISO LEGAL NO RODAPÉ ===== */
+.rodape-afiliado{
+    max-width:640px;
+    margin:18px auto 0;
+    background:linear-gradient(135deg,#fffbe0,#fff8cc);
+    border:1px solid #ffe066;
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    text-align:left;
+}
+.rodape-afiliado-icone{
+    flex:0 0 38px;
+    width:38px;
+    height:38px;
+    background:#FFE600;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#111;
+    font-size:20px;
+    font-weight:900;
+}
+.rodape-afiliado-txt{
+    flex:1;
+    color:#333;
+    font-size:12.5px;
+    line-height:1.5;
+}
+.rodape-afiliado-txt strong{
+    color:#111;
+    font-weight:800;
+    display:block;
+    margin-bottom:2px;
+    font-size:13px;
+}
+.rodape-afiliado-txt span{
+    color:#555;
+}
+
 @media(max-width:1000px){
 .carousel{height:250px}
 .card{flex:0 0 calc((100% - 30px) / 3)}
@@ -356,6 +496,106 @@ html.modo-produto #paginaProduto{display:block !important}
 .pp-titulo{font-size:18px}
 .aval-estrelas-input{font-size:28px}
 .pp-voltar-topo{top:8px;left:8px;padding:8px 14px;font-size:11px}
+
+.tag-ml{
+    font-size:9px;
+    padding:4px 9px 4px 4px;
+    gap:5px;
+    top:6px;
+    left:6px;
+}
+.tag-ml img{
+    width:16px;
+    height:16px;
+}
+.popup-foto-area .tag-ml{
+    top:8px;
+    left:8px;
+    font-size:10px;
+    padding:5px 11px 5px 5px;
+}
+.popup-foto-area .tag-ml img{
+    width:18px;
+    height:18px;
+}
+.pp-foto-area .tag-ml{
+    top:52px;
+    left:8px;
+    font-size:10px;
+    padding:5px 11px 5px 5px;
+}
+.pp-foto-area .tag-ml img{
+    width:18px;
+    height:18px;
+}
+
+.btn-ml{
+    font-size:13px !important;
+    padding:13px 8px !important;
+}
+.aviso-ml{
+    font-size:10.5px;
+}
+.rodape-afiliado{
+    padding:12px;
+    gap:10px;
+}
+.rodape-afiliado-icone{
+    flex:0 0 32px;
+    width:32px;
+    height:32px;
+    font-size:17px;
+}
+.rodape-afiliado-txt{
+    font-size:11.5px;
+}
+.rodape-afiliado-txt strong{
+    font-size:12px;
+}
+
+.barra-icones {
+    padding: 12px 8px;
+    margin-bottom: 12px;
+}
+.barra-icones-inner {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 6px;
+    justify-content: center;
+}
+.barra-grupo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex: 0 1 auto;
+}
+.barra-label {
+    display: inline-block;
+    font-size: 8px;
+    color: #888;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    margin-right: 3px;
+    white-space: nowrap;
+}
+.barra-divisor {
+    display: block;
+    width: 1px;
+    height: 22px;
+    background: #eaeaea;
+    margin: 0 2px;
+}
+.icone-btn,
+.icone-info {
+    width: 30px;
+    height: 30px;
+}
+.icone-info img {
+    transform: scale(1.1);
+}
 }
 
 .rodape {
@@ -499,194 +739,6 @@ html.modo-produto #paginaProduto{display:block !important}
     box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
 
-/* ===== TARJA MERCADO LIVRE ===== */
-.tag-ml{
-    position:absolute;
-    top:8px;
-    left:8px;
-    background:linear-gradient(135deg,#FFE600,#FFD400);
-    color:#111;
-    font-size:10px;
-    font-weight:900;
-    padding:4px 10px 4px 6px;
-    border-radius:20px;
-    letter-spacing:.3px;
-    text-transform:uppercase;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    box-shadow:0 2px 6px rgba(0,0,0,.18);
-    z-index:4;
-    white-space:nowrap;
-    pointer-events:none;
-    line-height:1;
-}
-.tag-ml img{
-    width:16px;
-    height:16px;
-    border-radius:50%;
-    background:#fff;
-    padding:1px;
-    object-fit:contain;
-    display:block;
-}
-.tag-ml span{
-    font-family:'Inter','Segoe UI',Arial,sans-serif;
-}
-
-/* Botão Mercado Livre (usado no POPUP e PP) */
-.btn-ml{
-    background:linear-gradient(135deg,#FFE600,#FFD400) !important;
-    color:#111 !important;
-    font-weight:900 !important;
-    font-size:14px !important;
-    padding:14px 10px !important;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    display:block;
-    text-align:center;
-    border-radius:10px;
-    line-height:1.2;
-    box-shadow:0 4px 14px rgba(255,214,0,.35);
-}
-.btn-ml:hover{
-    background:linear-gradient(135deg,#FFD400,#FFC400) !important;
-    transform:translateY(-2px);
-}
-
-/* Aviso abaixo do botão ML */
-.aviso-ml{
-    font-size:11px;
-    color:#888;
-    text-align:center;
-    margin-top:8px;
-    margin-bottom:12px;
-    line-height:1.35;
-    font-weight:600;
-}
-
-/* ===== AVISO LEGAL NO RODAPÉ ===== */
-.rodape-afiliado{
-    max-width:640px;
-    margin:18px auto 0;
-    background:linear-gradient(135deg,#fffbe0,#fff8cc);
-    border:1px solid #ffe066;
-    border-radius:12px;
-    padding:14px 16px;
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    text-align:left;
-}
-.rodape-afiliado-icone{
-    flex:0 0 38px;
-    width:38px;
-    height:38px;
-    background:#FFE600;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#111;
-    font-size:20px;
-    font-weight:900;
-}
-.rodape-afiliado-txt{
-    flex:1;
-    color:#333;
-    font-size:12.5px;
-    line-height:1.5;
-}
-.rodape-afiliado-txt strong{
-    color:#111;
-    font-weight:800;
-    display:block;
-    margin-bottom:2px;
-    font-size:13px;
-}
-.rodape-afiliado-txt span{
-    color:#555;
-}
-@media(max-width:650px){
-    .tag-ml{
-        font-size:9px;
-        padding:3px 8px 3px 5px;
-        top:6px;
-        left:6px;
-        gap:5px;
-    }
-    .tag-ml img{
-        width:14px;
-        height:14px;
-    }
-    .btn-ml{
-        font-size:13px !important;
-        padding:13px 8px !important;
-    }
-    .aviso-ml{
-        font-size:10.5px;
-    }
-    .rodape-afiliado{
-        padding:12px;
-        gap:10px;
-    }
-    .rodape-afiliado-icone{
-        flex:0 0 32px;
-        width:32px;
-        height:32px;
-        font-size:17px;
-    }
-    .rodape-afiliado-txt{
-        font-size:11.5px;
-    }
-    .rodape-afiliado-txt strong{
-        font-size:12px;
-    }
-    .barra-icones {
-        padding: 12px 8px;
-        margin-bottom: 12px;
-    }
-    .barra-icones-inner {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 6px;
-        justify-content: center;
-    }
-    .barra-grupo {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        flex: 0 1 auto;
-    }
-    .barra-label {
-        display: inline-block;
-        font-size: 8px;
-        color: #888;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.2px;
-        margin-right: 3px;
-        white-space: nowrap;
-    }
-    .barra-divisor {
-        display: block;
-        width: 1px;
-        height: 22px;
-        background: #eaeaea;
-        margin: 0 2px;
-    }
-    .icone-btn,
-    .icone-info {
-        width: 30px;
-        height: 30px;
-    }
-    .icone-info img {
-        transform: scale(1.1);
-    }
-}
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </style>
 </head>
@@ -775,7 +827,8 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
         <button class="fechar" onclick="fecharPopup()">×</button>
         <div class="popup-foto-area">
             <span class="tag-ml" id="popupTagML" style="display:none;">
-                <img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span>
+                <img src="/mercadolivre.webp" alt="ML">
+                <span>Oferta Mercado Livre</span>
             </span>
             <img class="popup-foto" id="popupFoto" src="" alt="">
         </div>
@@ -850,7 +903,8 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
         <div class="pp-foto-area">
             <a class="pp-voltar-topo" href="https://meusachadinhos.qd.je/">← Meus Achadinhos</a>
             <span class="tag-ml" id="ppTagML" style="display:none;">
-                <img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span>
+                <img src="/mercadolivre.webp" alt="ML">
+                <span>Oferta Mercado Livre</span>
             </span>
             <img class="pp-foto" id="ppFoto" src="" alt="">
         </div>
@@ -904,6 +958,7 @@ const URL_PLANILHA = "https://docs.google.com/spreadsheets/d/1kz185SYCWeIEcJhWMW
 const URL_BASE = "https://meusachadinhos.qd.je/";
 const ITENS_POR_PAGINA = 20;
 const SLIDES_NO_CARROSSEL = 6;
+const ML_LOGO = "/mercadolivre.webp";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDerW6oXJzCfdP8aWrV19ZCXHkLhM0E",
@@ -962,11 +1017,9 @@ let resultadosBusca = [];
 let _avalListenerAtivo = null;
 let _avalListenerRef   = null;
 
-/* ===== CATÁLOGO PAGINADO ===== */
 let paginaCatalogo = 1;
 let _blocosCatalogo = [];
 const CATEGORIAS_POR_PAGINA = 20;
-/* ============================== */
 
 function hashProduto(p){
     const base = (p.link || p.titulo || "").toString();
@@ -1053,17 +1106,19 @@ function escapeHtml(s){
         .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 }
 
+function montarTagML(){
+    return '<span class="tag-ml"><img src="' + ML_LOGO + '" alt="ML"><span>Oferta Mercado Livre</span></span>';
+}
+
 function criarCard(produto, indexGlobal, lista){
     const card = document.createElement("div");
     card.className = "card";
     card.onclick = function(){ abrirProdutoPopup(indexGlobal); };
-
     const ml = ehMercadoLivre(produto);
-
     card.innerHTML = `
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
-            ${ml ? '<span class="tag-ml"><img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span></span>' : ''}
+            ${ml ? montarTagML() : ''}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
@@ -1077,13 +1132,11 @@ function criarCardGrid(produto, indexGlobal){
     const card = document.createElement("div");
     card.className = "card card-grid";
     card.onclick = function(){ abrirProdutoPopup(indexGlobal); };
-
     const ml = ehMercadoLivre(produto);
-
     card.innerHTML = `
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
-            ${ml ? '<span class="tag-ml"><img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span></span>' : ''}
+            ${ml ? montarTagML() : ''}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
@@ -1107,7 +1160,6 @@ function preencherMenuCategorias(){
     todas.textContent = "Todas as ofertas";
     todas.onclick = function(){ toggleMenuCategorias(); limparBusca(); };
     dd.appendChild(todas);
-
     categorias.forEach(function(cat){
         const a = document.createElement("button");
         a.className = "cat-item";
@@ -1138,7 +1190,6 @@ function executarBusca(){
     termoBuscaAtual = termo;
     const t = normalizar(termo);
     const palavras = t.split(' ').filter(function(p){ return p.length > 0; });
-    
     resultadosBusca = produtos.filter(function(p){
         const tituloNorm = normalizar(p.titulo);
         const descNorm   = normalizar(p.descricao);
@@ -1149,7 +1200,6 @@ function executarBusca(){
                 || catNorm.includes(palavra);
         });
     });
-    
     paginaAtual = 1;
     mostrarResultados();
     try{
@@ -1252,14 +1302,11 @@ function renderizarPaginacao(totalPag){
 function calcularPaginas(total, atual){
     const paginas = [];
     const JANELA = 4;
-
     if(total <= JANELA + 1){
         for(let i = 1; i <= total; i++) paginas.push(i);
         return paginas;
     }
-
     let inicio, fim;
-
     if(atual <= 3){
         inicio = 1;
         fim    = JANELA;
@@ -1267,19 +1314,16 @@ function calcularPaginas(total, atual){
         inicio = atual - 2;
         fim    = atual + 1;
     }
-
     if(fim >= total){
         fim    = total;
         inicio = Math.max(1, total - JANELA + 1);
     }
-
     if(inicio > 1) paginas.push("...");
     for(let i = inicio; i <= fim; i++) paginas.push(i);
     if(fim < total){
         paginas.push("...");
         paginas.push(total);
     }
-
     return paginas;
 }
 function irParaPagina(p){
@@ -1351,15 +1395,12 @@ function criarCarrosselCategoria(nome, itens){
     return sec;
 }
 
-/* ================= CATÁLOGO PAGINADO POR CATEGORIA ================= */
 function montarCatalogo(filtroCat){
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
-
     _blocosCatalogo = [];
     const ERROS = /^#(ERROR!|N\/A|REF!|VALUE!|DIV\/0!|NAME\?|NULL!|NUM!)/i;
     const categoriasParaMostrar = filtroCat ? [filtroCat] : categorias;
-
     categoriasParaMostrar.forEach(function(categoria){
         if(!categoria || ERROS.test(categoria)) return;
         const itens = produtos.filter(function(p){
@@ -1368,7 +1409,6 @@ function montarCatalogo(filtroCat){
         if(itens.length === 0) return;
         _blocosCatalogo.push({ categoria: categoria, itens: itens });
     });
-
     paginaCatalogo = 1;
     renderizarPaginaCatalogo();
 }
@@ -1376,27 +1416,21 @@ function montarCatalogo(filtroCat){
 function renderizarPaginaCatalogo(){
     const catalogo = document.getElementById("catalogo");
     catalogo.innerHTML = "";
-
     const total = _blocosCatalogo.length;
     const totalPag = Math.max(1, Math.ceil(total / CATEGORIAS_POR_PAGINA));
-
     if(paginaCatalogo < 1) paginaCatalogo = 1;
     if(paginaCatalogo > totalPag) paginaCatalogo = totalPag;
-
     const inicio = (paginaCatalogo - 1) * CATEGORIAS_POR_PAGINA;
     const fim = Math.min(inicio + CATEGORIAS_POR_PAGINA, total);
     const blocosPagina = _blocosCatalogo.slice(inicio, fim);
-
     if(total === 0){
         catalogo.innerHTML = '<p class="sem-resultados">Nenhum produto encontrado.</p>';
         document.getElementById("paginacaoCatalogo").innerHTML = "";
         return;
     }
-
     blocosPagina.forEach(function(bloco){
         catalogo.appendChild(criarCarrosselCategoria(bloco.categoria, bloco.itens));
     });
-
     renderizarPaginacaoCatalogo(totalPag);
 }
 
@@ -1404,14 +1438,12 @@ function renderizarPaginacaoCatalogo(totalPag){
     const pag = document.getElementById("paginacaoCatalogo");
     pag.innerHTML = "";
     if(totalPag <= 1) return;
-
     const btnPrev = document.createElement("button");
     btnPrev.className = "pag-btn";
     btnPrev.innerHTML = "‹";
     btnPrev.disabled = paginaCatalogo === 1;
     btnPrev.onclick = function(){ irParaPaginaCatalogo(paginaCatalogo - 1); };
     pag.appendChild(btnPrev);
-
     calcularPaginas(totalPag, paginaCatalogo).forEach(function(p){
         if(p === "..."){
             const span = document.createElement("span");
@@ -1426,7 +1458,6 @@ function renderizarPaginacaoCatalogo(totalPag){
             pag.appendChild(b);
         }
     });
-
     const btnNext = document.createElement("button");
     btnNext.className = "pag-btn pag-next";
     btnNext.innerHTML = '<span class="txt-seguinte">Seguinte </span>›';
@@ -1445,7 +1476,6 @@ function irParaPaginaCatalogo(p){
         window.scrollTo({ top: y, behavior: "smooth" });
     }
 }
-/* =================================================================== */
 
 function construirCarrosselDinamico(){
     const carrossel = document.getElementById("carrosselBox");
@@ -1521,7 +1551,6 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     indexAtual  = (typeof index === "number") ? index : -1;
     modoProduto = !!modoExclusivo;
 
-    // Tarja + botão + aviso
     const tag   = document.getElementById("popupTagML");
     const btn   = document.getElementById("popupComprar");
     const aviso = document.getElementById("popupAvisoML");
@@ -1805,7 +1834,6 @@ function carregarPaginaProduto(index){
     indexAtual  = index;
     modoProduto = true;
 
-    // Tarja + botão + aviso da página do produto
     const mlPP = ehMercadoLivre(produto);
     const tagPP   = document.getElementById("ppTagML");
     const btnPP   = document.getElementById("ppComprar");
