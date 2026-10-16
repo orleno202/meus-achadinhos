@@ -1077,31 +1077,40 @@ function renderizarPaginacao(totalPag){
 }
 function calcularPaginas(total, atual){
     const paginas = [];
-    const JANELA = 4; // tamanho da janela de números em sequência
+    const JANELA = 4;
 
-    // Se couber tudo + última sem precisar de reticências
+    // Poucas páginas: mostra tudo
     if(total <= JANELA + 1){
         for(let i = 1; i <= total; i++) paginas.push(i);
         return paginas;
     }
 
-    // Janela começa na página atual
-    let inicio = atual;
-    let fim    = atual + JANELA - 1;
+    let inicio, fim;
 
-    // Ajusta quando estiver perto do fim
+    if(atual <= 3){
+        // Páginas 1, 2, 3: janela fixa em 1..4
+        inicio = 1;
+        fim    = JANELA;
+    } else {
+        // A partir da página 4: a janela rola
+        // pág 4 → 2..5 | pág 5 → 3..6 | pág 6 → 4..7 ...
+        inicio = atual - 2;
+        fim    = atual + 1;
+    }
+
+    // Se estourou a última, recua para caber
     if(fim >= total){
         fim    = total;
         inicio = Math.max(1, total - JANELA + 1);
     }
 
-    // Reticências no início (se a janela não começa em 1)
+    // Reticências no início
     if(inicio > 1) paginas.push("...");
 
     // Números da janela
     for(let i = inicio; i <= fim; i++) paginas.push(i);
 
-    // Reticências no fim (se ainda não chegou na última)
+    // Reticências + última página
     if(fim < total){
         paginas.push("...");
         paginas.push(total);
