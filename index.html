@@ -543,6 +543,144 @@ html.modo-produto #paginaProduto{display:block !important}
         transform: scale(1.1);
     }
 }
+    /* ===== TARJA MERCADO LIVRE ===== */
+.tag-ml{
+    position:absolute;
+    top:8px;
+    left:8px;
+    background:linear-gradient(135deg,#FFE600,#FFD400);
+    color:#111;
+    font-size:10px;
+    font-weight:900;
+    padding:4px 9px;
+    border-radius:20px;
+    letter-spacing:.3px;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    box-shadow:0 2px 6px rgba(0,0,0,.18);
+    z-index:4;
+    white-space:nowrap;
+    pointer-events:none;
+}
+.tag-ml::before{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#111;
+    display:inline-block;
+}
+
+/* Botão Mercado Livre */
+.btn-ml{
+    background:linear-gradient(135deg,#FFE600,#FFD400) !important;
+    color:#111 !important;
+    font-weight:900 !important;
+    font-size:13px !important;
+    padding:11px 6px !important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:block;
+    text-align:center;
+    border-radius:9px;
+    line-height:1.2;
+}
+.btn-ml:hover{
+    background:linear-gradient(135deg,#FFD400,#FFC400) !important;
+    transform:translateY(-1px);
+}
+
+/* Aviso abaixo do botão ML */
+.aviso-ml{
+    font-size:9.5px;
+    color:#888;
+    text-align:center;
+    margin-top:5px;
+    line-height:1.25;
+    font-weight:600;
+}
+
+/* Ajustes no card-info para caber a frase */
+.card-info .btn-ml + .aviso-ml{
+    margin-top:5px;
+}
+
+/* ===== AVISO LEGAL NO RODAPÉ ===== */
+.rodape-afiliado{
+    max-width:640px;
+    margin:18px auto 0;
+    background:linear-gradient(135deg,#fffbe0,#fff8cc);
+    border:1px solid #ffe066;
+    border-radius:12px;
+    padding:14px 16px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    text-align:left;
+}
+.rodape-afiliado-icone{
+    flex:0 0 38px;
+    width:38px;
+    height:38px;
+    background:#FFE600;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#111;
+    font-size:20px;
+    font-weight:900;
+}
+.rodape-afiliado-txt{
+    flex:1;
+    color:#333;
+    font-size:12.5px;
+    line-height:1.5;
+}
+.rodape-afiliado-txt strong{
+    color:#111;
+    font-weight:800;
+    display:block;
+    margin-bottom:2px;
+    font-size:13px;
+}
+.rodape-afiliado-txt span{
+    color:#555;
+}
+@media(max-width:650px){
+    .tag-ml{
+        font-size:9px;
+        padding:3px 7px;
+        top:6px;
+        left:6px;
+    }
+    .btn-ml{
+        font-size:11.5px !important;
+        padding:10px 4px !important;
+    }
+    .aviso-ml{
+        font-size:8.5px;
+    }
+    .rodape-afiliado{
+        padding:12px;
+        gap:10px;
+    }
+    .rodape-afiliado-icone{
+        flex:0 0 32px;
+        width:32px;
+        height:32px;
+        font-size:17px;
+    }
+    .rodape-afiliado-txt{
+        font-size:11.5px;
+    }
+    .rodape-afiliado-txt strong{
+        font-size:12px;
+    }
+}
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
 </style>
 </head>
@@ -683,6 +821,16 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
             </svg>
             <span>Siga o <strong>@meus_achadinhos_premium</strong> no Instagram</span>
         </a>
+
+        <!-- AVISO DE AFILIADO -->
+        <div class="rodape-afiliado">
+            <div class="rodape-afiliado-icone">✓</div>
+            <div class="rodape-afiliado-txt">
+                <strong>Este site participa do Programa de Afiliados do Mercado Livre</strong>
+                <span>Alguns links direcionam o usuário para a plataforma oficial do Mercado Livre. Ao comprar por eles, podemos receber uma comissão sem custo adicional para você.</span>
+            </div>
+        </div>
+
         <p class="rodape-copy">© 2026 Meus Achadinhos — As melhores ofertas em um só lugar.</p>
     </div>
 </footer>
@@ -886,19 +1034,30 @@ function escapeHtml(s){
         .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 }
-
+    function ehMercadoLivre(p){
+    const l = (p.link || "").toLowerCase();
+    return /mercadolivre|mercadolibre|mlb\.|produto\.mercadolivre/i.test(l);
+}
 function criarCard(produto, indexGlobal, lista){
     const card = document.createElement("div");
     card.className = "card";
     card.onclick = function(){ abrirProdutoPopup(indexGlobal); };
+
+    const ml = ehMercadoLivre(produto);
+
     card.innerHTML = `
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
+            ${ml ? '<span class="tag-ml">Oferta Mercado Livre</span>' : ''}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
             <div class="card-title">${produto.titulo}</div>
-            <a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">🛒 EU QUERO</a>
+            ${ml
+                ? `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn btn-ml" onclick="event.stopPropagation()">VER NO MERCADO LIVRE →</a>
+                   <div class="aviso-ml">Você será redirecionado para o Mercado Livre.</div>`
+                : `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">🛒 EU QUERO</a>`
+            }
         </div>
     `;
     lista.appendChild(card);
@@ -907,14 +1066,22 @@ function criarCardGrid(produto, indexGlobal){
     const card = document.createElement("div");
     card.className = "card card-grid";
     card.onclick = function(){ abrirProdutoPopup(indexGlobal); };
+
+    const ml = ehMercadoLivre(produto);
+
     card.innerHTML = `
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
+            ${ml ? '<span class="tag-ml">Oferta Mercado Livre</span>' : ''}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
             <div class="card-title">${produto.titulo}</div>
-            <a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">🛒 EU QUERO</a>
+            ${ml
+                ? `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn btn-ml" onclick="event.stopPropagation()">VER NO MERCADO LIVRE →</a>
+                   <div class="aviso-ml">Você será redirecionado para o Mercado Livre.</div>`
+                : `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">🛒 EU QUERO</a>`
+            }
         </div>
     `;
     return card;
