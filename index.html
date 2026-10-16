@@ -139,9 +139,9 @@ body{font-family:'Inter','Segoe UI',Roboto,Arial,Helvetica,sans-serif;background
 .linha-produtos{position:relative;display:flex;align-items:center;width:100%;gap:8px}
 .lista-cards{display:flex;gap:15px;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;scrollbar-width:none;flex:1;min-width:0;padding:5px 2px 12px}
 .lista-cards::-webkit-scrollbar{display:none}
-.card{flex:0 0 calc((100% - 45px) / 4);min-width:0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+.card{flex:0 0 calc((100% - 45px) / 4);min-width:0;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(255,107,0,.18)}
-.card-img{position:relative;width:100%;height:220px;background:#fff;overflow:hidden}
+.card-img{position:relative;width:100%;height:220px;background:#fff;overflow:hidden;flex:1 1 auto}
 .card-img img{width:100%;height:100%;object-fit:contain;display:block;transition:transform .4s}
 .card:hover .card-img img{transform:scale(1.04)}
 .share-card{position:absolute;top:8px;right:8px;width:36px;height:36px;border:none;border-radius:50%;background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.2);font-size:20px;cursor:pointer;z-index:3;transition:transform .2s}
@@ -544,63 +544,65 @@ html.modo-produto #paginaProduto{display:block !important}
     }
 }
 
-/* ===== TARJA MERCADO LIVRE (fixa em todos os produtos) ===== */
+/* ===== TARJA MERCADO LIVRE (acima do card, fora da imagem) ===== */
 .tag-ml{
-    position:absolute;
-    top:8px;
-    left:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
     background:#FFE600;
     color:#111;
     font-size:10px;
     font-weight:900;
-    padding:5px 12px;
-    border-radius:20px;
+    padding:6px 10px;
     letter-spacing:.4px;
     text-transform:uppercase;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    box-shadow:0 3px 8px rgba(0,0,0,.22);
-    z-index:6;
-    white-space:nowrap;
-    pointer-events:none;
     line-height:1;
     font-family:'Inter','Segoe UI',Arial,sans-serif;
-    border:2px solid #fff;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    border-bottom:2px solid #E6CF00;
+    flex:0 0 auto;
 }
 .tag-ml::before{
     content:"🤝";
-    font-size:14px;
+    font-size:13px;
     line-height:1;
     display:inline-block;
+    flex:0 0 auto;
 }
 .tag-ml span{
     display:inline-block;
-}
-.tag-ml img{
-    width:18px;
-    height:18px;
-    border-radius:50%;
-    background:#fff;
-    padding:1px;
-    object-fit:contain;
-    display:block;
-    flex:0 0 auto;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-/* Popup — tarja maior */
+/* Popup — tarja sobreposta na imagem (estilo antigo) */
 .popup-foto-area .tag-ml{
+    position:absolute;
     top:10px;
     left:10px;
-    font-size:12px;
+    border-radius:20px;
+    border-bottom:none;
+    box-shadow:0 3px 8px rgba(0,0,0,.22);
     padding:6px 14px;
+    font-size:12px;
+    z-index:6;
+    background:#FFE600;
 }
 /* Página produto (pp) */
 .pp-foto-area .tag-ml{
+    position:absolute;
     top:60px;
     left:10px;
-    font-size:12px;
+    border-radius:20px;
+    border-bottom:none;
+    box-shadow:0 3px 8px rgba(0,0,0,.22);
     padding:6px 14px;
+    font-size:12px;
+    z-index:6;
+    background:#FFE600;
 }
 
 /* Botão Mercado Livre (usado no POPUP e PP) */
@@ -680,13 +682,11 @@ html.modo-produto #paginaProduto{display:block !important}
 @media(max-width:650px){
     .tag-ml{
         font-size:9px;
-        padding:4px 9px;
-        top:6px;
-        left:6px;
+        padding:5px 8px;
         gap:5px;
     }
     .tag-ml::before{
-        font-size:12px;
+        font-size:11px;
     }
     .popup-foto-area .tag-ml{
         top:8px;
@@ -811,13 +811,13 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     <div class="popup-box">
         <button class="fechar" onclick="fecharPopup()">×</button>
         <div class="popup-foto-area">
-            <span class="tag-ml" id="popupTagML">
+            <span class="tag-ml">
                 <span>Oferta Mercado Livre</span>
             </span>
             <img class="popup-foto" id="popupFoto" src="" alt="">
         </div>
         <div class="popup-titulo" id="popupTitulo"></div>
-        <a class="popup-comprar" id="popupComprar" href="#" target="_blank" rel="noopener noreferrer">🛒 EU QUERO</a>
+        <a class="popup-comprar btn-ml" id="popupComprar" href="#" target="_blank" rel="noopener noreferrer">VER NO MERCADO LIVRE</a>
         <div class="popup-descricao" id="popupDescricao"></div>
         <button class="ver-mais" id="verMaisDescricao" onclick="toggleDescricao()">Ver mais</button>
         <button class="popup-compartilhar" onclick="toggleCompartilhamento()">↗ COMPARTILHAR OFERTA</button>
@@ -885,14 +885,14 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
         <div class="pp-header">🌟 Meus Achadinhos — Oferta Exclusiva</div>
         <div class="pp-foto-area">
             <a class="pp-voltar-topo" href="https://meusachadinhos.qd.je/">← Meus Achadinhos</a>
-            <span class="tag-ml" id="ppTagML">
+            <span class="tag-ml">
                 <span>Oferta Mercado Livre</span>
             </span>
             <img class="pp-foto" id="ppFoto" src="" alt="">
         </div>
         <div class="pp-body">
             <div class="pp-titulo" id="ppTitulo"></div>
-            <a class="pp-comprar" id="ppComprar" href="#" target="_blank" rel="noopener noreferrer">🛒 EU QUERO ESSA OFERTA</a>
+            <a class="pp-comprar btn-ml" id="ppComprar" href="#" target="_blank" rel="noopener noreferrer">VER NO MERCADO LIVRE</a>
             <div class="pp-descricao" id="ppDescricao"></div>
             <button class="pp-ver-mais" id="ppVerMais" onclick="ppToggleDescricao()">Ver mais</button>
             <button class="pp-compartilhar" onclick="ppToggleCompartilhamento()">↗ COMPARTILHAR ESSA OFERTA</button>
@@ -1081,20 +1081,19 @@ function escapeHtml(s){
         .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 }
 
-/* ===== TARJA GENÉRICA — sempre presente em todos os cards ===== */
+/* ===== TARJA GENÉRICA — acima da imagem ===== */
 function montarTagML(){
     return '<span class="tag-ml"><span>Oferta Mercado Livre</span></span>';
 }
-/* ============================================================== */
 
 function criarCard(produto, indexGlobal, lista){
     const card = document.createElement("div");
     card.className = "card";
     card.onclick = function(){ abrirProdutoPopup(indexGlobal); };
     card.innerHTML = `
+        ${montarTagML()}
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
-            ${montarTagML()}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
@@ -1109,9 +1108,9 @@ function criarCardGrid(produto, indexGlobal){
     card.className = "card card-grid";
     card.onclick = function(){ abrirProdutoPopup(indexGlobal); };
     card.innerHTML = `
+        ${montarTagML()}
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
-            ${montarTagML()}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
@@ -1523,9 +1522,6 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     indexAtual  = (typeof index === "number") ? index : -1;
     modoProduto = !!modoExclusivo;
 
-    document.getElementById("popupComprar").textContent = "VER NO MERCADO LIVRE";
-    document.getElementById("popupComprar").classList.add("btn-ml");
-
     if(!modoProduto){
         try{
             if(indexAtual >= 0){
@@ -1792,8 +1788,6 @@ function carregarPaginaProduto(index){
     tituloAtual = produto.titulo;
     indexAtual  = index;
     modoProduto = true;
-    document.getElementById("ppComprar").textContent = "VER NO MERCADO LIVRE";
-    document.getElementById("ppComprar").classList.add("btn-ml");
     const el  = document.getElementById("ppDescricao");
     const btn = document.getElementById("ppVerMais");
     el.classList.remove("expandida");
