@@ -172,7 +172,7 @@ body{font-family:'Inter','Segoe UI',Roboto,Arial,Helvetica,sans-serif;background
 @keyframes popIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
 .fechar{position:absolute;right:12px;top:10px;width:36px;height:36px;border:none;border-radius:50%;background:#f2f2f2;font-size:22px;cursor:pointer;z-index:5;transition:background .2s}
 .fechar:hover{background:#ffe0cc}
-.popup-foto-area{width:100%;height:350px;background:#fff;border-radius:12px;overflow:hidden;margin-bottom:15px}
+.popup-foto-area{position:relative;width:100%;height:350px;background:#fff;border-radius:12px;overflow:hidden;margin-bottom:15px}
 .popup-foto{width:100%;height:100%;object-fit:contain}
 .popup-titulo{font-size:20px;font-weight:800;line-height:1.4;margin-bottom:15px;color:var(--preto)}
 .popup-comprar{display:block;width:100%;text-align:center;text-decoration:none;background:linear-gradient(135deg,#ff6b00,#ff3d00);color:#fff;padding:14px;border-radius:10px;font-weight:800;margin-bottom:12px;box-shadow:0 4px 14px rgba(255,107,0,.3);transition:transform .15s}
@@ -498,52 +498,8 @@ html.modo-produto #paginaProduto{display:block !important}
     transform: scale(1.08);
     box-shadow: 0 4px 12px rgba(0,0,0,.25);
 }
-@media(max-width:650px){
-    .barra-icones {
-        padding: 12px 8px;
-        margin-bottom: 12px;
-    }
-    .barra-icones-inner {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 6px;
-        justify-content: center;
-    }
-    .barra-grupo {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        flex: 0 1 auto;
-    }
-    .barra-label {
-        display: inline-block;
-        font-size: 8px;
-        color: #888;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.2px;
-        margin-right: 3px;
-        white-space: nowrap;
-    }
-    .barra-divisor {
-        display: block;
-        width: 1px;
-        height: 22px;
-        background: #eaeaea;
-        margin: 0 2px;
-    }
-    .icone-btn,
-    .icone-info {
-        width: 30px;
-        height: 30px;
-    }
-    .icone-info img {
-        transform: scale(1.1);
-    }
-}
-    /* ===== TARJA MERCADO LIVRE ===== */
+
+/* ===== TARJA MERCADO LIVRE ===== */
 .tag-ml{
     position:absolute;
     top:8px;
@@ -552,60 +508,62 @@ html.modo-produto #paginaProduto{display:block !important}
     color:#111;
     font-size:10px;
     font-weight:900;
-    padding:4px 9px;
+    padding:4px 10px 4px 6px;
     border-radius:20px;
     letter-spacing:.3px;
     text-transform:uppercase;
     display:inline-flex;
     align-items:center;
-    gap:4px;
+    gap:6px;
     box-shadow:0 2px 6px rgba(0,0,0,.18);
     z-index:4;
     white-space:nowrap;
     pointer-events:none;
+    line-height:1;
 }
-.tag-ml::before{
-    content:"";
-    width:8px;
-    height:8px;
+.tag-ml img{
+    width:16px;
+    height:16px;
     border-radius:50%;
-    background:#111;
-    display:inline-block;
+    background:#fff;
+    padding:1px;
+    object-fit:contain;
+    display:block;
+}
+.tag-ml span{
+    font-family:'Inter','Segoe UI',Arial,sans-serif;
 }
 
-/* Botão Mercado Livre */
+/* Botão Mercado Livre (usado no POPUP e PP) */
 .btn-ml{
     background:linear-gradient(135deg,#FFE600,#FFD400) !important;
     color:#111 !important;
     font-weight:900 !important;
-    font-size:13px !important;
-    padding:11px 6px !important;
+    font-size:14px !important;
+    padding:14px 10px !important;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
     display:block;
     text-align:center;
-    border-radius:9px;
+    border-radius:10px;
     line-height:1.2;
+    box-shadow:0 4px 14px rgba(255,214,0,.35);
 }
 .btn-ml:hover{
     background:linear-gradient(135deg,#FFD400,#FFC400) !important;
-    transform:translateY(-1px);
+    transform:translateY(-2px);
 }
 
 /* Aviso abaixo do botão ML */
 .aviso-ml{
-    font-size:9.5px;
+    font-size:11px;
     color:#888;
     text-align:center;
-    margin-top:5px;
-    line-height:1.25;
+    margin-top:8px;
+    margin-bottom:12px;
+    line-height:1.35;
     font-weight:600;
-}
-
-/* Ajustes no card-info para caber a frase */
-.card-info .btn-ml + .aviso-ml{
-    margin-top:5px;
 }
 
 /* ===== AVISO LEGAL NO RODAPÉ ===== */
@@ -653,16 +611,21 @@ html.modo-produto #paginaProduto{display:block !important}
 @media(max-width:650px){
     .tag-ml{
         font-size:9px;
-        padding:3px 7px;
+        padding:3px 8px 3px 5px;
         top:6px;
         left:6px;
+        gap:5px;
+    }
+    .tag-ml img{
+        width:14px;
+        height:14px;
     }
     .btn-ml{
-        font-size:11.5px !important;
-        padding:10px 4px !important;
+        font-size:13px !important;
+        padding:13px 8px !important;
     }
     .aviso-ml{
-        font-size:8.5px;
+        font-size:10.5px;
     }
     .rodape-afiliado{
         padding:12px;
@@ -679,6 +642,49 @@ html.modo-produto #paginaProduto{display:block !important}
     }
     .rodape-afiliado-txt strong{
         font-size:12px;
+    }
+    .barra-icones {
+        padding: 12px 8px;
+        margin-bottom: 12px;
+    }
+    .barra-icones-inner {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 6px;
+        justify-content: center;
+    }
+    .barra-grupo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        flex: 0 1 auto;
+    }
+    .barra-label {
+        display: inline-block;
+        font-size: 8px;
+        color: #888;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        margin-right: 3px;
+        white-space: nowrap;
+    }
+    .barra-divisor {
+        display: block;
+        width: 1px;
+        height: 22px;
+        background: #eaeaea;
+        margin: 0 2px;
+    }
+    .icone-btn,
+    .icone-info {
+        width: 30px;
+        height: 30px;
+    }
+    .icone-info img {
+        transform: scale(1.1);
     }
 }
 button:focus,a:focus,input:focus,textarea:focus{outline:none}
@@ -768,10 +774,14 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
     <div class="popup-box">
         <button class="fechar" onclick="fecharPopup()">×</button>
         <div class="popup-foto-area">
+            <span class="tag-ml" id="popupTagML" style="display:none;">
+                <img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span>
+            </span>
             <img class="popup-foto" id="popupFoto" src="" alt="">
         </div>
         <div class="popup-titulo" id="popupTitulo"></div>
         <a class="popup-comprar" id="popupComprar" href="#" target="_blank" rel="noopener noreferrer">🛒 EU QUERO</a>
+        <div class="aviso-ml" id="popupAvisoML" style="display:none;">Você será redirecionado para o Mercado Livre.</div>
         <div class="popup-descricao" id="popupDescricao"></div>
         <button class="ver-mais" id="verMaisDescricao" onclick="toggleDescricao()">Ver mais</button>
         <button class="popup-compartilhar" onclick="toggleCompartilhamento()">↗ COMPARTILHAR OFERTA</button>
@@ -822,7 +832,6 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
             <span>Siga o <strong>@meus_achadinhos_premium</strong> no Instagram</span>
         </a>
 
-        <!-- AVISO DE AFILIADO -->
         <div class="rodape-afiliado">
             <div class="rodape-afiliado-icone">✓</div>
             <div class="rodape-afiliado-txt">
@@ -840,11 +849,15 @@ button:focus,a:focus,input:focus,textarea:focus{outline:none}
         <div class="pp-header">🌟 Meus Achadinhos — Oferta Exclusiva</div>
         <div class="pp-foto-area">
             <a class="pp-voltar-topo" href="https://meusachadinhos.qd.je/">← Meus Achadinhos</a>
+            <span class="tag-ml" id="ppTagML" style="display:none;">
+                <img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span>
+            </span>
             <img class="pp-foto" id="ppFoto" src="" alt="">
         </div>
         <div class="pp-body">
             <div class="pp-titulo" id="ppTitulo"></div>
             <a class="pp-comprar" id="ppComprar" href="#" target="_blank" rel="noopener noreferrer">🛒 EU QUERO ESSA OFERTA</a>
+            <div class="aviso-ml" id="ppAvisoML" style="display:none;">Você será redirecionado para o Mercado Livre.</div>
             <div class="pp-descricao" id="ppDescricao"></div>
             <button class="pp-ver-mais" id="ppVerMais" onclick="ppToggleDescricao()">Ver mais</button>
             <button class="pp-compartilhar" onclick="ppToggleCompartilhamento()">↗ COMPARTILHAR ESSA OFERTA</button>
@@ -952,7 +965,7 @@ let _avalListenerRef   = null;
 /* ===== CATÁLOGO PAGINADO ===== */
 let paginaCatalogo = 1;
 let _blocosCatalogo = [];
-const CATEGORIAS_POR_PAGINA = 20; // 20 categorias por página (com carrossel cada)
+const CATEGORIAS_POR_PAGINA = 20;
 /* ============================== */
 
 function hashProduto(p){
@@ -963,6 +976,11 @@ function hashProduto(p){
         h = h & 0xffffffff;
     }
     return "p" + Math.abs(h).toString(36);
+}
+
+function ehMercadoLivre(p){
+    const l = (p.link || "").toLowerCase();
+    return /mercadolivre|mercadolibre|mlb\.|produto\.mercadolivre/i.test(l);
 }
 
 function parseCSV(text){
@@ -1026,7 +1044,7 @@ async function carregarProdutos(){
 function normalizar(s){
     return (s||'').toString().toLowerCase()
         .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-        .replace(/\s+/g, ' ')  // ← Converte múltiplos espaços em um só
+        .replace(/\s+/g, ' ')
         .trim();
 }
 function escapeHtml(s){
@@ -1034,10 +1052,7 @@ function escapeHtml(s){
         .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
 }
-    function ehMercadoLivre(p){
-    const l = (p.link || "").toLowerCase();
-    return /mercadolivre|mercadolibre|mlb\.|produto\.mercadolivre/i.test(l);
-}
+
 function criarCard(produto, indexGlobal, lista){
     const card = document.createElement("div");
     card.className = "card";
@@ -1048,16 +1063,12 @@ function criarCard(produto, indexGlobal, lista){
     card.innerHTML = `
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
-            ${ml ? '<span class="tag-ml">Oferta Mercado Livre</span>' : ''}
+            ${ml ? '<span class="tag-ml"><img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span></span>' : ''}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
             <div class="card-title">${produto.titulo}</div>
-            ${ml
-                ? `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn btn-ml" onclick="event.stopPropagation()">VER NO MERCADO LIVRE →</a>
-                   <div class="aviso-ml">Você será redirecionado para o Mercado Livre.</div>`
-                : `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">🛒 EU QUERO</a>`
-            }
+            <a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">VER OFERTA</a>
         </div>
     `;
     lista.appendChild(card);
@@ -1072,16 +1083,12 @@ function criarCardGrid(produto, indexGlobal){
     card.innerHTML = `
         <div class="card-img">
             <img src="${produto.imagem}" alt="${produto.titulo}" loading="lazy">
-            ${ml ? '<span class="tag-ml">Oferta Mercado Livre</span>' : ''}
+            ${ml ? '<span class="tag-ml"><img src="/mercadolivre.webp" alt="ML"><span>Oferta Mercado Livre</span></span>' : ''}
             <button class="share-card" onclick="abrirPopupCompartilhar(event,${indexGlobal})" aria-label="Compartilhar produto">↗</button>
         </div>
         <div class="card-info">
             <div class="card-title">${produto.titulo}</div>
-            ${ml
-                ? `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn btn-ml" onclick="event.stopPropagation()">VER NO MERCADO LIVRE →</a>
-                   <div class="aviso-ml">Você será redirecionado para o Mercado Livre.</div>`
-                : `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">🛒 EU QUERO</a>`
-            }
+            <a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="btn" onclick="event.stopPropagation()">VER OFERTA</a>
         </div>
     `;
     return card;
@@ -1246,7 +1253,6 @@ function calcularPaginas(total, atual){
     const paginas = [];
     const JANELA = 4;
 
-    // Poucas páginas: mostra tudo
     if(total <= JANELA + 1){
         for(let i = 1; i <= total; i++) paginas.push(i);
         return paginas;
@@ -1255,29 +1261,20 @@ function calcularPaginas(total, atual){
     let inicio, fim;
 
     if(atual <= 3){
-        // Páginas 1, 2, 3: janela fixa em 1..4
         inicio = 1;
         fim    = JANELA;
     } else {
-        // A partir da página 4: a janela rola
-        // pág 4 → 2..5 | pág 5 → 3..6 | pág 6 → 4..7 ...
         inicio = atual - 2;
         fim    = atual + 1;
     }
 
-    // Se estourou a última, recua para caber
     if(fim >= total){
         fim    = total;
         inicio = Math.max(1, total - JANELA + 1);
     }
 
-    // Reticências no início
     if(inicio > 1) paginas.push("...");
-
-    // Números da janela
     for(let i = inicio; i <= fim; i++) paginas.push(i);
-
-    // Reticências + última página
     if(fim < total){
         paginas.push("...");
         paginas.push(total);
@@ -1363,7 +1360,6 @@ function montarCatalogo(filtroCat){
     const ERROS = /^#(ERROR!|N\/A|REF!|VALUE!|DIV\/0!|NAME\?|NULL!|NUM!)/i;
     const categoriasParaMostrar = filtroCat ? [filtroCat] : categorias;
 
-    // Coleta produtos por categoria
     categoriasParaMostrar.forEach(function(categoria){
         if(!categoria || ERROS.test(categoria)) return;
         const itens = produtos.filter(function(p){
@@ -1513,6 +1509,9 @@ function abrirProdutoPopup(index){
 }
 
 function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
+    const produto = (typeof index === "number" && produtos[index]) ? produtos[index] : null;
+    const ml = produto ? ehMercadoLivre(produto) : false;
+
     document.getElementById("popupFoto").src = imagem;
     document.getElementById("popupTitulo").textContent = titulo;
     document.getElementById("popupComprar").href = link;
@@ -1522,13 +1521,30 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     indexAtual  = (typeof index === "number") ? index : -1;
     modoProduto = !!modoExclusivo;
 
+    // Tarja + botão + aviso
+    const tag   = document.getElementById("popupTagML");
+    const btn   = document.getElementById("popupComprar");
+    const aviso = document.getElementById("popupAvisoML");
+
+    if(ml){
+        tag.style.display = "inline-flex";
+        btn.textContent = "VER NO MERCADO LIVRE";
+        btn.classList.add("btn-ml");
+        aviso.style.display = "block";
+    } else {
+        tag.style.display = "none";
+        btn.textContent = "🛒 EU QUERO";
+        btn.classList.remove("btn-ml");
+        aviso.style.display = "none";
+    }
+
     if(!modoProduto){
         try{
             if(indexAtual >= 0){
-                const produto = produtos[indexAtual];
-                if(produto){
+                const p = produtos[indexAtual];
+                if(p){
                     const params = new URLSearchParams(location.search);
-                    params.set("p", hashProduto(produto));
+                    params.set("p", hashProduto(p));
                     history.replaceState(null, "", "?" + params.toString());
                 }
             }
@@ -1536,9 +1552,9 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     }
 
     const el  = document.getElementById("popupDescricao");
-    const btn = document.getElementById("verMaisDescricao");
+    const btnV = document.getElementById("verMaisDescricao");
     el.classList.remove("expandida");
-    btn.textContent = "Ver mais";
+    btnV.textContent = "Ver mais";
     document.getElementById("compartilhamento").classList.remove("ativo");
     document.getElementById("dicaStories").classList.remove("ativo");
     atualizarLinkBox();
@@ -1547,7 +1563,7 @@ function abrirPopup(imagem, titulo, link, descricao, index, modoExclusivo){
     document.getElementById("popup").classList.add("ativo");
     requestAnimationFrame(function(){
         requestAnimationFrame(function(){
-            btn.style.display = (el.scrollHeight > el.clientHeight) ? "inline-block" : "none";
+            btnV.style.display = (el.scrollHeight > el.clientHeight) ? "inline-block" : "none";
         });
     });
 }
@@ -1788,6 +1804,25 @@ function carregarPaginaProduto(index){
     tituloAtual = produto.titulo;
     indexAtual  = index;
     modoProduto = true;
+
+    // Tarja + botão + aviso da página do produto
+    const mlPP = ehMercadoLivre(produto);
+    const tagPP   = document.getElementById("ppTagML");
+    const btnPP   = document.getElementById("ppComprar");
+    const avisoPP = document.getElementById("ppAvisoML");
+
+    if(mlPP){
+        tagPP.style.display = "inline-flex";
+        btnPP.textContent = "VER NO MERCADO LIVRE";
+        btnPP.classList.add("btn-ml");
+        avisoPP.style.display = "block";
+    } else {
+        tagPP.style.display = "none";
+        btnPP.textContent = "🛒 EU QUERO ESSA OFERTA";
+        btnPP.classList.remove("btn-ml");
+        avisoPP.style.display = "none";
+    }
+
     const el  = document.getElementById("ppDescricao");
     const btn = document.getElementById("ppVerMais");
     el.classList.remove("expandida");
