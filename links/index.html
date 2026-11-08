@@ -12,29 +12,50 @@
             font-family: 'Inter', Arial, sans-serif;
         }
 
-        /* FUNDO DA PÁGINA */
+        /* FUNDO DO COMPUTADOR (ESCURO) */
         body {
-            background-image: url('fundo.jpeg'); 
-            background-size: cover;
-            background-position: top center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            min-height: 100vh;
+            background-color: #1a1a1a; /* Cor de fundo pra quando abrir no PC */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            background-color: #000; /* Cor de segurança caso a imagem demore a carregar */
+            min-height: 100vh;
+        }
+
+        /* MOLDURA 9:16 */
+        .container-principal {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('fundo.jpeg'); 
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 5vh; /* Distância do fundo da tela */
+            position: relative;
+            overflow-y: auto; /* Permite rolar se a tela for muito pequena */
+        }
+
+        /* NO COMPUTADOR: Fica no formato de celular (9:16) */
+        @media (min-width: 600px) {
+            .container-principal {
+                width: 450px; /* Largura fixa tipo celular */
+                height: 800px; /* Altura fixa tipo celular */
+                max-height: 95vh;
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+                padding-bottom: 30px;
+            }
         }
 
         .container-botoes {
-            width: 100%;
-            max-width: 500px;
+            width: 90%;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 65vh; /* Distância do topo para não cobrir a mulher */
-            padding-bottom: 40px;
+            gap: 12px;
         }
 
         /* ESTILO DOS BOTÕES */
@@ -45,21 +66,20 @@
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid #eaeaea;
             border-radius: 50px;
-            padding: 10px 20px 10px 10px;
+            padding: 8px 15px 8px 8px;
             text-decoration: none;
             color: #333;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
         }
 
         .btn-icone {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -69,21 +89,21 @@
         }
 
         .btn-icone svg {
-            width: 35px;
-            height: 35px;
+            width: 28px;
+            height: 28px;
             fill: #fff;
         }
 
         .btn-texto {
             flex: 1;
-            padding: 0 15px;
+            padding: 0 10px;
             text-align: left;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .btn-texto strong {
             display: block;
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 800;
             color: #111;
         }
@@ -93,14 +113,14 @@
         }
 
         .btn-texto small {
-            font-size: 13px;
+            font-size: 11px;
             color: #666;
             font-weight: 500;
         }
 
         .btn-seta {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: #25D366;
             display: flex;
@@ -110,43 +130,19 @@
         }
         
         .btn-seta svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             fill: #fff;
         }
 
-        /* CORES PERSONALIZADAS */
-        /* Instagram */
-        .btn.instagram .btn-icone {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-        .btn.instagram .btn-texto strong span {
-            color: #dc2743;
-        }
-        .btn.instagram .btn-seta {
-            background: #dc2743;
-        }
+        /* CORES */
+        .btn.instagram .btn-icone { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .btn.instagram .btn-texto strong span { color: #dc2743; }
+        .btn.instagram .btn-seta { background: #dc2743; }
 
-        /* Site */
-        .btn.site .btn-icone {
-            background: #111;
-        }
-        .btn.site .btn-texto strong span {
-            color: #ff6b00;
-        }
-        .btn.site .btn-seta {
-            background: #ff6b00;
-        }
-
-        @media (max-width: 480px) {
-            .container-botoes {
-                margin-top: 55vh;
-            }
-            .btn-texto strong { font-size: 16px; }
-            .btn-texto small { font-size: 11px; }
-            .btn-icone { width: 50px; height: 50px; }
-            .btn-icone svg { width: 28px; height: 28px; }
-        }
+        .btn.site .btn-icone { background: #111; }
+        .btn.site .btn-texto strong span { color: #ff6b00; }
+        .btn.site .btn-seta { background: #ff6b00; }
 
         /* ANIMAÇÃO DO POPUP */
         @keyframes slideUp {
@@ -157,61 +153,62 @@
 </head>
 <body>
 
-    <div class="container-botoes">
-        
-        <!-- BOTÃO WHATSAPP (Abre o Popup) -->
-        <a href="javascript:void(0)" onclick="abrirPopupGrupos()" class="btn whatsapp">
-            <div class="btn-icone">
-                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </div>
-            <div class="btn-texto">
-                <strong>Entre nos nossos<br>grupos do <span>WhatsApp</span></strong>
-                <small>Receba as melhores ofertas e cupons!</small>
-            </div>
-            <div class="btn-seta">
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-        </a>
+    <!-- MOLDURA DO CELULAR -->
+    <div class="container-principal">
+        <div class="container-botoes">
+            
+            <!-- BOTÃO WHATSAPP -->
+            <a href="javascript:void(0)" onclick="abrirPopupGrupos()" class="btn whatsapp">
+                <div class="btn-icone">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div class="btn-texto">
+                    <strong>Entre nos nossos<br>grupos do <span>WhatsApp</span></strong>
+                    <small>Receba as melhores ofertas e cupons!</small>
+                </div>
+                <div class="btn-seta">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+            </a>
 
-        <!-- BOTÃO INSTAGRAM -->
-        <a href="https://www.instagram.com/meus_achadinhos_premium/" target="_blank" class="btn instagram">
-            <div class="btn-icone">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </div>
-            <div class="btn-texto">
-                <strong>Siga nosso<br><span>Instagram</span></strong>
-                <small>Fique por dentro das novidades!</small>
-            </div>
-            <div class="btn-seta">
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-        </a>
+            <!-- BOTÃO INSTAGRAM -->
+            <a href="https://www.instagram.com/meus_achadinhos_premium/" target="_blank" class="btn instagram">
+                <div class="btn-icone">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </div>
+                <div class="btn-texto">
+                    <strong>Siga nosso<br><span>Instagram</span></strong>
+                    <small>Fique por dentro das novidades!</small>
+                </div>
+                <div class="btn-seta">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+            </a>
 
-        <!-- BOTÃO SITE -->
-        <a href="https://meusachadinhos.qd.je/" class="btn site">
-            <div class="btn-icone">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            </div>
-            <div class="btn-texto">
-                <strong>Visite nosso Site<br><span>MeusAchadinhos.qd.je</span></strong>
-                <small>Aqui você encontra as melhores ofertas!</small>
-            </div>
-            <div class="btn-seta">
-                <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-            </div>
-        </a>
+            <!-- BOTÃO SITE -->
+            <a href="https://meusachadinhos.qd.je/" class="btn site">
+                <div class="btn-icone">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                </div>
+                <div class="btn-texto">
+                    <strong>Visite nosso Site<br><span>MeusAchadinhos.qd.je</span></strong>
+                    <small>Aqui você encontra as melhores ofertas!</small>
+                </div>
+                <div class="btn-seta">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+            </a>
 
+        </div>
     </div>
 
-    <!-- ===== POPUP DE GRUPOS WHATSAPP (AUTOMÁTICO VIA SHEETS) ===== -->
+    <!-- POPUP DE GRUPOS -->
     <div id="popupGrupos" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(5px); padding: 15px; font-family: 'Inter', Arial, sans-serif;">
         <div style="background: #fff; width: 100%; max-width: 420px; border-radius: 24px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.3); animation: slideUp 0.3s ease; display: flex; flex-direction: column; max-height: 90vh;">
             
-            <!-- CABEÇALHO -->
             <div style="background: linear-gradient(135deg, #25D366, #1FA855); padding: 25px 20px; text-align: center; position: relative; flex-shrink: 0;">
                 <button onclick="fecharPopupGrupos()" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.2); border: none; color: #fff; width: 30px; height: 30px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">&times;</button>
                 
-                <!-- Ícone real do WhatsApp perfeito -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 24 24" fill="#fff" style="margin-bottom: 10px; pointer-events: none;">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -220,12 +217,10 @@
                 <p style="color: rgba(255,255,255,0.9); font-size: 13px; margin-top: 6px; font-weight: 500;">Escolha os grupos para participar</p>
             </div>
 
-            <!-- LISTA DE GRUPOS DINÂMICA -->
             <div id="listaGruposContainer" style="padding: 20px; overflow-y: auto; background: #fcfcfc;">
                 <div style="text-align:center; padding: 20px; color: #888;">Carregando grupos...</div>
             </div>
 
-            <!-- BOTÕES DE AÇÃO -->
             <div style="padding: 16px 20px 20px; background: #fff; border-top: 1px solid #f0f0f0; display: flex; gap: 12px; flex-shrink: 0;">
                 <button onclick="fecharPopupGrupos()" style="flex: 1; background: #f0f0f0; color: #555; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: background 0.2s;">Cancelar</button>
                 <button onclick="confirmarGrupos()" id="btnConfirmar" disabled style="flex: 2; background: #ccc; color: #fff; border: none; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; transition: background 0.2s;">Confirmar</button>
@@ -233,7 +228,7 @@
         </div>
     </div>
 
-    <!-- ===== SCRIPT DO POPUP E DA PLANILHA ===== -->
+    <!-- SCRIPT DA PLANILHA -->
     <script>
         const URL_PLANILHA = "https://docs.google.com/spreadsheets/d/1kz185SYCWeIEcJhWMWcPyZIhm4RvqGgwbU0DFEPw5kY/export?format=csv&gid=694267279";
         const GID_GRUPOS = "1077825485"; 
@@ -250,7 +245,6 @@
             document.getElementById('popupGrupos').style.display = 'none';
         };
 
-        // Função para ler o CSV da planilha
         function parseCSV(text){
             const rows = [];
             let row = [];
@@ -276,7 +270,6 @@
             return rows;
         }
 
-        // Função para evitar que códigos HTML na planilha quebrem a página
         function escapeHtml(s){
             return (s||"").toString()
                 .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
