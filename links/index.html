@@ -164,17 +164,19 @@
                 </div>
             </a>
 
-                        <!-- BOTÃO SITE COM O LOGO (FAVICON) -->
+                                    <!-- BOTÃO SITE COM O LOGO (FAVICON) -->
             <a href="https://meusachadinhos.qd.je/" class="btn site">
-                <div class="btn-icone" style="background: #ff6b00; overflow: hidden;">
-                    <!-- Puxa a logo da raiz e transforma em branco para combinar -->
-                    <img src="../logo.png" alt="Meus Achadinhos" style="width: 26px; height: 26px; object-fit: contain; filter: brightness(0) invert(1);">
+                <div class="btn-icone" style="background: #ff6b00; overflow: hidden; position: relative;">
+                    <!-- Círculo branco interno e a imagem por cima -->
+                    <div style="position: absolute; inset: 3px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <img src="../logo.png" alt="Meus Achadinhos" style="width: 80%; height: 80%; object-fit: contain;">
+                    </div>
                 </div>
                 <div class="btn-texto">
-                    <strong>Visite nosso Site<br><span>MeusAchadinhos.qd.je</span></strong>
+                    <strong>Visite nosso Site<br><span style="color: #ff6b00;">MeusAchadinhos.qd.je</span></strong>
                     <small>Aqui você encontra as melhores ofertas!</small>
                 </div>
-                <div class="btn-seta">
+                <div class="btn-seta" style="background: #ff6b00;">
                     <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
                 </div>
             </a>
