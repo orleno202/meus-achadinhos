@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Meus Achadinhos | Links</title>
     <style>
         * {
@@ -18,46 +18,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            height: 100dvh; /* Altura dinâmica do celular */
+            width: 100vw;
+            overflow: hidden; /* Impede qualquer rolagem na página toda */
         }
 
         /* MOLDURA DO CELULAR */
         .container-principal {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background-image: url('fundo.jpeg'); 
             background-size: cover;
             background-position: center top; 
             background-repeat: no-repeat;
+            
+            /* Flexbox para ajustar os botões dinamicamente */
             display: flex;
             flex-direction: column;
+            justify-content: flex-end; /* Joga os botões para a parte de baixo */
             align-items: center;
             
-            /* AJUSTE DE POSIÇÃO: 48vh deixa os botões mais acima */
-            padding-top: 48vh; 
-            padding-bottom: 5vh;
-            overflow-y: auto;
+            padding-bottom: 8vh; /* Distância do fundo da tela */
+            position: relative;
         }
 
-        /* NO COMPUTADOR */
+        /* NO COMPUTADOR: Fica no formato 9:16 fixo */
         @media (min-width: 600px) {
             .container-principal {
-                width: 450px;
-                height: 800px;
-                max-height: 95vh;
-                border-radius: 20px;
-                box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-                padding-top: 360px; /* Ajuste para tela do PC */
-                padding-bottom: 20px;
+                width: 400px; /* Largura de celular */
+                height: 85vh; /* Altura de celular */
+                max-height: 800px;
+                border-radius: 24px;
+                box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+                padding-bottom: 40px;
             }
         }
 
         .container-botoes {
-            width: 90%;
-            max-width: 400px;
+            width: 88%; /* Largura dos botões */
+            max-width: 380px;
             display: flex;
             flex-direction: column;
-            gap: 12px; 
+            gap: 10px; /* Espaço entre os botões */
         }
 
         /* ESTILO DOS BOTÕES */
@@ -68,20 +70,20 @@
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid #eaeaea;
             border-radius: 50px;
-            padding: 8px 15px 8px 8px;
+            padding: 6px 12px 6px 6px;
             text-decoration: none;
             color: #333;
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
             transition: transform 0.2s;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
+        .btn:active {
+            transform: scale(0.97); /* Efeito de clique */
         }
 
         .btn-icone {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -91,21 +93,21 @@
         }
 
         .btn-icone svg {
-            width: 28px;
-            height: 28px;
+            width: 25px;
+            height: 25px;
             fill: #fff;
         }
 
         .btn-texto {
             flex: 1;
-            padding: 0 10px;
+            padding: 0 8px;
             text-align: left;
             line-height: 1.2;
         }
 
         .btn-texto strong {
             display: block;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
             color: #111;
         }
@@ -115,14 +117,14 @@
         }
 
         .btn-texto small {
-            font-size: 11px;
+            font-size: 10px;
             color: #666;
             font-weight: 500;
         }
 
         .btn-seta {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             background: #25D366;
             display: flex;
@@ -132,8 +134,8 @@
         }
         
         .btn-seta svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             fill: #fff;
         }
 
