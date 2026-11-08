@@ -12,15 +12,15 @@
             font-family: 'Inter', Arial, sans-serif;
         }
 
-        /* FUNDO DO COMPUTADOR (ESCURO) */
+        /* FUNDO DO COMPUTADOR */
         body {
             background-color: #1a1a1a; 
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100dvh; /* Altura dinâmica do celular */
+            height: 100dvh; 
             width: 100vw;
-            overflow: hidden; /* Impede qualquer rolagem na página toda */
+            overflow: hidden; 
         }
 
         /* MOLDURA DO CELULAR */
@@ -29,37 +29,39 @@
             height: 100%;
             background-image: url('fundo.jpeg'); 
             background-size: cover;
-            background-position: center top; 
+            /* Alinha a imagem pela parte de baixo para garantir que a frase apareça */
+            background-position: center bottom; 
             background-repeat: no-repeat;
             
-            /* Flexbox para ajustar os botões dinamicamente */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Joga os botões para a parte de baixo */
+            justify-content: flex-end; /* Mantém o bloco de botões no fundo */
             align-items: center;
             
-            padding-bottom: 8vh; /* Distância do fundo da tela */
+            /* AJUSTE FINO AQUI: Aumente a porcentagem se os botões estiverem cobrindo a frase */
+            padding-bottom: 10vh; 
             position: relative;
         }
 
-        /* NO COMPUTADOR: Fica no formato 9:16 fixo */
+        /* NO COMPUTADOR */
         @media (min-width: 600px) {
             .container-principal {
-                width: 400px; /* Largura de celular */
-                height: 85vh; /* Altura de celular */
+                width: 400px; 
+                height: 85vh; 
                 max-height: 800px;
                 border-radius: 24px;
                 box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-                padding-bottom: 40px;
+                background-position: center center; /* No PC centraliza */
+                padding-bottom: 12%; /* Empurra um pouco mais pra cima no PC */
             }
         }
 
         .container-botoes {
-            width: 88%; /* Largura dos botões */
+            width: 88%; 
             max-width: 380px;
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Espaço entre os botões */
+            gap: 8px; /* Espaço entre os botões */
         }
 
         /* ESTILO DOS BOTÕES */
@@ -78,7 +80,7 @@
         }
 
         .btn:active {
-            transform: scale(0.97); /* Efeito de clique */
+            transform: scale(0.97);
         }
 
         .btn-icone {
