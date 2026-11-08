@@ -27,14 +27,14 @@
             height: 100vh;
             background-image: url('fundo.jpeg'); 
             background-size: cover;
-            background-position: center top; /* Garante que a imagem não seja cortada no topo */
+            background-position: center top; 
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
             
-            /* AQUI ESTÁ O SEGREDO: Margem no topo */
-            padding-top: 55vh; /* Empurra os botões para 55% da altura da tela */
+            /* AJUSTE DE POSIÇÃO: 48vh deixa os botões mais acima */
+            padding-top: 48vh; 
             padding-bottom: 5vh;
             overflow-y: auto;
         }
@@ -47,7 +47,7 @@
                 max-height: 95vh;
                 border-radius: 20px;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-                padding-top: 420px; /* Ajuste exato para a altura fixa do PC */
+                padding-top: 360px; /* Ajuste para tela do PC */
                 padding-bottom: 20px;
             }
         }
@@ -57,8 +57,7 @@
             max-width: 400px;
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Espaço entre os botões */
-            /* Se quiser os botões mais finos, diminua o gap */
+            gap: 12px; 
         }
 
         /* ESTILO DOS BOTÕES */
