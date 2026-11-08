@@ -14,39 +14,40 @@
 
         /* FUNDO DO COMPUTADOR (ESCURO) */
         body {
-            background-color: #1a1a1a; /* Cor de fundo pra quando abrir no PC */
+            background-color: #1a1a1a; 
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
         }
 
-        /* MOLDURA 9:16 */
+        /* MOLDURA DO CELULAR */
         .container-principal {
             width: 100vw;
             height: 100vh;
+            /* Fundo fixo e ajustado */
             background-image: url('fundo.jpeg'); 
             background-size: cover;
-            background-position: top center;
+            background-position: center top;
             background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
-            padding-bottom: 5vh; /* Distância do fundo da tela */
+            justify-content: flex-end; /* Joga os botões para baixo */
+            padding-bottom: 12vh; /* SUBIU OS BOTÕES: distância do fundo da tela */
             position: relative;
-            overflow-y: auto; /* Permite rolar se a tela for muito pequena */
+            overflow-y: auto;
         }
 
-        /* NO COMPUTADOR: Fica no formato de celular (9:16) */
+        /* NO COMPUTADOR */
         @media (min-width: 600px) {
             .container-principal {
-                width: 450px; /* Largura fixa tipo celular */
-                height: 800px; /* Altura fixa tipo celular */
+                width: 450px;
+                height: 800px;
                 max-height: 95vh;
                 border-radius: 20px;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-                padding-bottom: 30px;
+                padding-bottom: 80px; /* Ajuste da altura no PC */
             }
         }
 
@@ -55,7 +56,7 @@
             max-width: 400px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 12px; /* Espaço entre os botões */
         }
 
         /* ESTILO DOS BOTÕES */
